@@ -110,12 +110,12 @@ class BddcHeader extends HTMLElement {
           flex-shrink: 0;
           display: flex;
           align-items: center;
-          height: 56px;
+          height: 76px;
           transition: height var(--transition);
         }
 
         .header.scrolled .logo {
-          height: 48px;
+          height: 64px;
         }
 
         .logo a {
@@ -131,7 +131,7 @@ class BddcHeader extends HTMLElement {
         .logo img {
           height: 100%;
           width: auto;
-          max-width: 220px;
+          max-width: 300px;
           object-fit: contain;
           display: block;
         }
@@ -594,9 +594,9 @@ class BddcHeader extends HTMLElement {
         }
 
         /* Mobile breakpoints */
-        @media (max-width: 1100px) {
+        @media (max-width: 1200px) {
           .nav-menu { gap: 0; }
-          .nav-link, .dropdown-trigger { padding: 10px 12px; font-size: 14px; }
+          .nav-link, .dropdown-trigger { padding: 9px 10px; font-size: 13.5px; }
           .btn { padding: 9px 16px; font-size: 13px; }
           .btn-outline { padding: 7px 14px; }
         }
@@ -608,9 +608,9 @@ class BddcHeader extends HTMLElement {
 
         @media (max-width: 480px) {
           .nav { padding: 10px 14px; gap: 10px; }
-          .logo { height: 50px; }
-          .header.scrolled .logo { height: 44px; }
-          .logo img { max-width: 170px; }
+          .logo { height: 64px; }
+          .header.scrolled .logo { height: 56px; }
+          .logo img { max-width: 210px; }
           .mobile-actions .donate-mobile {
             padding: 8px 14px;
             font-size: 12.5px;
@@ -618,7 +618,7 @@ class BddcHeader extends HTMLElement {
         }
 
         @media (max-width: 360px) {
-          .logo img { max-width: 140px; }
+          .logo img { max-width: 170px; }
           .mobile-actions .donate-mobile {
             padding: 7px 12px;
             font-size: 11.5px;
@@ -645,18 +645,10 @@ class BddcHeader extends HTMLElement {
                 Applications
                 ${this.chevronSvg()}
               </button>
-              <div class="dropdown-menu mega" role="menu">
-                <div>
-                  <div class="dropdown-section-label">Apply</div>
-                  <a class="dropdown-link" href="https://airtable.com/embed/appWyR26n0mjaXNwu/shrodhuFKkzL5mCjX?backgroundColor=gray" target="_blank" rel="noopener noreferrer">Adoption Application</a>
-                  <a class="dropdown-link" href="https://airtable.com/embed/apprlVtBQNP5OwGsI/shrVmvAUUQ6xCKMrf?backgroundColor=gray" target="_blank" rel="noopener noreferrer">Foster Application</a>
-                  <a class="dropdown-link" href="https://airtable.com/embed/appqKxAMX4xyWWB4j/shrklnKjkfaVYmbV0?backgroundColor=gray" target="_blank" rel="noopener noreferrer">Volunteer Application</a>
-                </div>
-                <div>
-                  <div class="dropdown-section-label">Requirements</div>
-                  <a class="dropdown-link" href="https://www.bigdogsdontcry.com/adoption-requirements" target="_top">Adoption Requirements</a>
-                  <a class="dropdown-link" href="https://www.bigdogsdontcry.com/foster-requirements" target="_top">Foster Requirements</a>
-                </div>
+              <div class="dropdown-menu" role="menu">
+                <a class="dropdown-link" href="https://airtable.com/embed/appWyR26n0mjaXNwu/shrodhuFKkzL5mCjX?backgroundColor=gray" target="_blank" rel="noopener noreferrer">Adoption Application</a>
+                <a class="dropdown-link" href="https://airtable.com/embed/apprlVtBQNP5OwGsI/shrVmvAUUQ6xCKMrf?backgroundColor=gray" target="_blank" rel="noopener noreferrer">Foster Application</a>
+                <a class="dropdown-link" href="https://airtable.com/embed/appqKxAMX4xyWWB4j/shrklnKjkfaVYmbV0?backgroundColor=gray" target="_blank" rel="noopener noreferrer">Volunteer Application</a>
               </div>
             </li>
 
@@ -666,6 +658,17 @@ class BddcHeader extends HTMLElement {
 
             <li role="none">
               <a class="nav-link" href="https://www.bigdogsdontcry.com/events" target="_top" role="menuitem">Events</a>
+            </li>
+
+            <li class="dropdown" role="none">
+              <button class="dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false" role="menuitem">
+                FAQs
+                ${this.chevronSvg()}
+              </button>
+              <div class="dropdown-menu" role="menu">
+                <a class="dropdown-link" href="https://www.bigdogsdontcry.com/adoption-requirements" target="_top">Adoption Requirements</a>
+                <a class="dropdown-link" href="https://www.bigdogsdontcry.com/foster-requirements" target="_top">Foster Requirements</a>
+              </div>
             </li>
 
             <li class="dropdown" role="none">
@@ -734,13 +737,9 @@ class BddcHeader extends HTMLElement {
                 ${this.chevronSvg()}
               </button>
               <div class="mobile-submenu">
-                <div class="mobile-sub-label">Apply</div>
                 <a class="mobile-sublink" href="https://airtable.com/embed/appWyR26n0mjaXNwu/shrodhuFKkzL5mCjX?backgroundColor=gray" target="_blank" rel="noopener noreferrer">Adoption Application</a>
                 <a class="mobile-sublink" href="https://airtable.com/embed/apprlVtBQNP5OwGsI/shrVmvAUUQ6xCKMrf?backgroundColor=gray" target="_blank" rel="noopener noreferrer">Foster Application</a>
                 <a class="mobile-sublink" href="https://airtable.com/embed/appqKxAMX4xyWWB4j/shrklnKjkfaVYmbV0?backgroundColor=gray" target="_blank" rel="noopener noreferrer">Volunteer Application</a>
-                <div class="mobile-sub-label">Requirements</div>
-                <a class="mobile-sublink" href="https://www.bigdogsdontcry.com/adoption-requirements" target="_top">Adoption Requirements</a>
-                <a class="mobile-sublink" href="https://www.bigdogsdontcry.com/foster-requirements" target="_top">Foster Requirements</a>
               </div>
             </li>
 
@@ -750,6 +749,17 @@ class BddcHeader extends HTMLElement {
 
             <li class="mobile-item">
               <a class="mobile-link" href="https://www.bigdogsdontcry.com/events" target="_top">Events</a>
+            </li>
+
+            <li class="mobile-item">
+              <button class="mobile-toggle" type="button" aria-expanded="false">
+                FAQs
+                ${this.chevronSvg()}
+              </button>
+              <div class="mobile-submenu">
+                <a class="mobile-sublink" href="https://www.bigdogsdontcry.com/adoption-requirements" target="_top">Adoption Requirements</a>
+                <a class="mobile-sublink" href="https://www.bigdogsdontcry.com/foster-requirements" target="_top">Foster Requirements</a>
+              </div>
             </li>
 
             <li class="mobile-item">
