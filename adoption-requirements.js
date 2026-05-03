@@ -86,7 +86,7 @@ class AdoptionRequirements extends HTMLElement {
         }
 
         .section-intro {
-          font-size: 1.1rem;
+          font-size: 1.2rem;
           color: #555;
           margin-bottom: 30px;
           line-height: 1.8;
@@ -110,7 +110,7 @@ class AdoptionRequirements extends HTMLElement {
 
         .requirement-item h3 {
           color: #667eea;
-          font-size: 1.3rem;
+          font-size: 1.45rem;
           margin-bottom: 10px;
           display: flex;
           align-items: center;
@@ -134,6 +134,7 @@ class AdoptionRequirements extends HTMLElement {
 
         .requirement-item p {
           color: #555;
+          font-size: 1.1rem;
           line-height: 1.7;
           margin-left: 40px;
           margin-bottom: 10px;
@@ -151,6 +152,7 @@ class AdoptionRequirements extends HTMLElement {
 
         .requirement-item li {
           color: #555;
+          font-size: 1.1rem;
           margin-bottom: 8px;
           line-height: 1.6;
         }
@@ -168,7 +170,7 @@ class AdoptionRequirements extends HTMLElement {
         .notice-box h3 {
           color: #d63031;
           margin-bottom: 12px;
-          font-size: 1.3rem;
+          font-size: 1.45rem;
           display: flex;
           align-items: center;
         }
@@ -181,6 +183,7 @@ class AdoptionRequirements extends HTMLElement {
 
         .notice-box p {
           color: #2d3436;
+          font-size: 1.1rem;
           line-height: 1.8;
           font-weight: 500;
         }
@@ -269,10 +272,14 @@ class AdoptionRequirements extends HTMLElement {
           .page-header { padding: 40px 20px 30px; }
           .requirements-section { padding: 30px 20px; }
           .section-title { font-size: 1.6rem; }
+          .section-intro { font-size: 1.1rem; }
           .requirement-item { padding: 15px 20px; }
-          .requirement-item h3 { font-size: 1.1rem; }
-          .requirement-item p { margin-left: 0; }
+          .requirement-item h3 { font-size: 1.25rem; }
+          .requirement-item p { margin-left: 0; font-size: 1.05rem; }
           .requirement-item ul { margin-left: 20px; }
+          .requirement-item li { font-size: 1.05rem; }
+          .notice-box h3 { font-size: 1.25rem; }
+          .notice-box p { font-size: 1.05rem; }
           .cta-section { padding: 35px 20px; }
           .cta-buttons { flex-direction: column; align-items: stretch; }
           .btn { width: 100%; }
