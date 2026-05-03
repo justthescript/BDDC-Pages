@@ -200,6 +200,57 @@ class BddcFooter extends HTMLElement {
           box-shadow: 0 6px 20px rgba(255, 153, 0, 0.4);
         }
 
+        /* Connect section (centered donate + socials) */
+        .footer-connect {
+          margin-top: 56px;
+          padding-top: 40px;
+          border-top: 1px solid var(--border-faint);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 18px;
+        }
+
+        .connect-label {
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: var(--text-soft);
+          margin: 0;
+        }
+
+        .footer-donate {
+          font-size: 15px;
+          font-weight: 600;
+          padding: 14px 36px;
+          border-radius: 999px;
+          background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+          color: white;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          box-shadow: 0 6px 18px rgba(255, 79, 123, 0.4);
+          transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+          line-height: 1;
+        }
+
+        .footer-donate:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 26px rgba(255, 79, 123, 0.55);
+          background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+        }
+
+        .footer-donate svg {
+          width: 16px;
+          height: 16px;
+        }
+
+        .footer-donate:hover svg {
+          animation: heartbeat 0.8s ease infinite;
+        }
+
         /* Link columns */
         .footer-col h4 {
           font-size: 13px;
@@ -283,6 +334,17 @@ class BddcFooter extends HTMLElement {
         }
 
         .footer-bottom a:hover {
+          color: var(--primary-light);
+        }
+
+        .designer-credit a {
+          color: var(--text-soft);
+          text-decoration: none;
+          font-weight: 500;
+          transition: color var(--transition);
+        }
+
+        .designer-credit a:hover {
           color: var(--primary-light);
         }
 
@@ -373,6 +435,11 @@ class BddcFooter extends HTMLElement {
             justify-content: center;
             text-align: center;
           }
+
+          .footer-connect {
+            margin-top: 36px;
+            padding-top: 28px;
+          }
         }
       </style>
 
@@ -398,21 +465,6 @@ class BddcFooter extends HTMLElement {
                   <a href="tel:+12198411142">
                     ${this.phoneSvg()}
                     <span>(219) 841-1142</span>
-                  </a>
-                </div>
-
-                <div class="socials" aria-label="Social media">
-                  <a class="social-btn instagram" href="https://www.instagram.com/bigdogsdontcryrescue/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Follow us on Instagram">
-                    ${this.instagramSvg()}
-                  </a>
-                  <a class="social-btn facebook" href="https://www.facebook.com/p/Big-Dogs-Dont-Cry-Inc-61567183106129/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Follow us on Facebook">
-                    ${this.facebookSvg()}
-                  </a>
-                  <a class="social-btn tiktok" href="https://www.tiktok.com/@bigdogsdontcryrescue" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="Follow us on TikTok">
-                    ${this.tiktokSvg()}
-                  </a>
-                  <a class="social-btn amazon" href="https://www.amazon.com/hz/wishlist/ls/5RKP49Q0QQHF?ref_=wl_share" target="_blank" rel="noopener noreferrer" aria-label="Amazon Wishlist" title="Shop our Amazon Wishlist">
-                    ${this.giftSvg()}
                   </a>
                 </div>
               </div>
@@ -445,12 +497,35 @@ class BddcFooter extends HTMLElement {
                 </ul>
               </div>
             </div>
+
+            <div class="footer-connect">
+              <p class="connect-label">Help us save more lives</p>
+              <a class="footer-donate" href="https://www.bigdogsdontcry.com/donations" target="_top">
+                ${this.heartSvg()}
+                <span>Donate</span>
+              </a>
+              <div class="socials" aria-label="Social media">
+                <a class="social-btn instagram" href="https://www.instagram.com/bigdogsdontcryrescue/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Follow us on Instagram">
+                  ${this.instagramSvg()}
+                </a>
+                <a class="social-btn facebook" href="https://www.facebook.com/p/Big-Dogs-Dont-Cry-Inc-61567183106129/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Follow us on Facebook">
+                  ${this.facebookSvg()}
+                </a>
+                <a class="social-btn tiktok" href="https://www.tiktok.com/@bigdogsdontcryrescue" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="Follow us on TikTok">
+                  ${this.tiktokSvg()}
+                </a>
+                <a class="social-btn amazon" href="https://www.amazon.com/hz/wishlist/ls/5RKP49Q0QQHF?ref_=wl_share" target="_blank" rel="noopener noreferrer" aria-label="Amazon Wishlist" title="Shop our Amazon Wishlist">
+                  ${this.giftSvg()}
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="footer-bottom">
           <div class="footer-bottom-inner">
             <span>&copy; ${year} Big Dogs Don't Cry &middot; Merrillville, IN</span>
+            <span class="designer-credit">Proudly designed by <a href="#" target="_blank" rel="noopener noreferrer">OmniScripts, Inc.</a></span>
             <span class="made-with">Made with ${this.heartSvg()} for big dogs</span>
           </div>
         </div>
