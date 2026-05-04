@@ -2,12 +2,16 @@
  * <bddc-adoption-info> — Wix Studio Custom Element
  * Big Dogs Don't Cry Animal Rescue — What's Included with Adoption
  *
+ * Build: responsibilities-icons-fix
+ *
  * Usage in Wix Studio:
  *   1. Add a Custom Element to the page
  *   2. Server URL: https://cdn.jsdelivr.net/gh/justthescript/BDDC-Pages@main/bddc-adoption-info.js
  *   3. Tag Name: bddc-adoption-info
  *   4. (Optional) data-hero-image : URL for hero background image
  */
+
+console.log('[bddc-adoption-info] build: responsibilities-icons-fix');
 
 (function () {
   const DEFAULT_HERO_IMAGE =
@@ -204,16 +208,20 @@
             <p class="section-lead">When you adopt from Big Dogs Don't Cry, you're making a commitment to:</p>
             <div class="items-list">
               <article class="item">
+                <div class="item-icon" aria-hidden="true">💝</div>
                 <div class="item-body">
-                  <p><strong>Provide love and care for life.</strong> This includes routine veterinary care,
-                  proper nutrition, safe and comfortable housing, and humane treatment.</p>
+                  <h3 class="item-title">Provide love and care for life</h3>
+                  <p>This includes routine veterinary care, proper nutrition, safe and comfortable
+                  housing, and humane treatment for the entirety of your dog's life.</p>
                 </div>
               </article>
               <article class="item">
+                <div class="item-icon" aria-hidden="true">📞</div>
                 <div class="item-body">
-                  <p><strong>Keep us in the loop.</strong> If circumstances change and you can't keep your pet,
-                  please contact us immediately — we'll help facilitate a safe return. You may not rehome your
-                  pet without rescue approval. We care about them forever.</p>
+                  <h3 class="item-title">Keep us in the loop</h3>
+                  <p>If circumstances change and you can't keep your pet, please contact us immediately —
+                  we'll help facilitate a safe return. You may not rehome your pet without rescue approval.
+                  We care about them forever.</p>
                 </div>
               </article>
             </div>
@@ -431,6 +439,9 @@
         }
         .item-body {
           min-width: 0;
+        }
+        .item-body:only-child {
+          grid-column: 1 / -1;
         }
         .item-body p {
           margin: 0 0 10px;
