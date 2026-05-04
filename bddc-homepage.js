@@ -29,7 +29,7 @@
   // Default hero image (the paw + hand image from the current Wix homepage).
   // If your image URL differs, set data-hero-image on the element.
   const DEFAULT_HERO_IMAGE =
-    'https://static.wixstatic.com/media/bc59b6_604fb6f09a314f219daf30e354c81e5a~mv2.webp';
+    'https://static.wixstatic.com/media/bc59b6_93af33948b9b45dd9e1bc33279b38160~mv2.png';
 
   // Paw print icon used in the Rescue/Rehabilitate/Rehome pillar cards.
   const PAW_ICON_URL =
