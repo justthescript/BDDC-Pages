@@ -29,7 +29,11 @@
   // Default hero image (the paw + hand image from the current Wix homepage).
   // If your image URL differs, set data-hero-image on the element.
   const DEFAULT_HERO_IMAGE =
-    'https://static.wixstatic.com/media/bc59b6_21e24fb57d2f4fd29555a13ca3e250da~mv2.png';
+    'https://static.wixstatic.com/media/bc59b6_604fb6f09a314f219daf30e354c81e5a~mv2.webp';
+
+  // Paw print icon used in the Rescue/Rehabilitate/Rehome pillar cards.
+  const PAW_ICON_URL =
+    'https://static.wixstatic.com/media/bc59b6_45db072b49a5427f930919d18683e36d~mv2.png';
 
   class BDDCHomepage extends HTMLElement {
     constructor() {
@@ -59,7 +63,7 @@
           </div>
           <div class="hero-cta">
             <a class="cta-mission" href="#mission">Our Mission</a>
-            <a class="cta-cause" href="https://www.bigdogsdontcry.com/get-involved" target="_blank" rel="noopener">Join Our Cause</a>
+            <a class="cta-cause" href="https://airtable.com/embed/appqKxAMX4xyWWB4j/shrklnKjkfaVYmbV0?backgroundColor=gray" target="_blank" rel="noopener">Join Our Cause</a>
           </div>
         </section>
 
@@ -76,7 +80,7 @@
             nurturing environment filled with love and hope. Together, we can change the lives of these animals
             one paw at a time. Discover how you can contribute to our mission and help bring joy to deserving pets.
           </p>
-          <a class="learn-more" href="https://www.bigdogsdontcry.com/about" target="_blank" rel="noopener">
+          <a class="learn-more" href="https://www.bigdogsdontcry.com/who-we-are" target="_blank" rel="noopener">
             Learn More <span class="arrow">→</span>
           </a>
         </section>
@@ -129,7 +133,7 @@
                 Every dollar you contribute helps us provide essential care, food, and medical treatment for our rescued dogs.
                 Together, we can create a brighter future for these loving animals. Thank you for your support!
               </p>
-              <a class="diff-link" href="https://www.bigdogsdontcry.com/donate" target="_blank" rel="noopener">
+              <a class="diff-link" href="https://www.bigdogsdontcry.com/donations" target="_blank" rel="noopener">
                 Donate <span class="arrow">→</span>
               </a>
             </div>
@@ -192,7 +196,9 @@
     pillarCard(title, body) {
       return `
         <article class="pillar">
-          <div class="pillar-icon">${this.pawSVG()}</div>
+          <div class="pillar-icon">
+            <img src="${PAW_ICON_URL}" alt="" aria-hidden="true">
+          </div>
           <h3 class="pillar-title">${title}</h3>
           <p class="pillar-body">${body}</p>
         </article>
@@ -200,7 +206,7 @@
     }
 
     pawSVG() {
-      // Simple paw glyph
+      // Decorative SVG paw used in the contact section (so it can be color-tinted).
       return `
         <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <ellipse cx="20" cy="20" rx="6" ry="8"/>
@@ -397,8 +403,8 @@
           max-width: 980px;
           font-weight: 600;
           color: var(--ink);
-          line-height: 1.55;
-          font-size: clamp(15px, 1.6vw, 17px);
+          line-height: 1.6;
+          font-size: clamp(16px, 1.4vw, 19px);
         }
         .learn-more {
           display: inline-block;
@@ -406,6 +412,7 @@
           color: #7a7a93;
           text-decoration: none;
           font-weight: 600;
+          font-size: 1.05em;
         }
         .learn-more:hover { color: var(--pink); }
         .arrow { display: inline-block; transition: transform .15s ease; }
@@ -414,45 +421,53 @@
 
         /* ───── PILLARS ───── */
         .pillars {
-          max-width: 1100px;
+          max-width: 1200px;
           margin: 24px auto 8px;
           padding: 16px 24px;
           display: grid;
-          gap: 18px;
+          gap: 22px;
         }
         .pillar {
           display: grid;
-          grid-template-columns: 220px 1fr;
+          grid-template-columns: auto minmax(180px, 1.1fr) 2fr;
           align-items: center;
-          gap: 24px;
-          padding: 22px 26px;
+          gap: 28px 36px;
+          padding: 32px 40px;
           border: 2px solid #b8c4f0;
           border-radius: 16px;
           background: #fff;
         }
         .pillar-icon {
           display: grid;
-          grid-template-columns: 56px auto;
-          align-items: center;
-          gap: 14px;
+          place-items: center;
+          width: 80px;
+          height: 80px;
+        }
+        .pillar-icon img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          display: block;
         }
         .pillar-icon svg {
-          width: 48px;
-          height: 48px;
+          width: 56px;
+          height: 56px;
           fill: #2a2a2a;
         }
         .pillar-title {
           margin: 0;
           color: var(--pink);
-          font-size: clamp(28px, 3.4vw, 40px);
+          font-size: clamp(32px, 3.8vw, 48px);
           font-weight: 700;
           letter-spacing: .3px;
+          line-height: 1.05;
         }
         .pillar-body {
           margin: 0;
           font-weight: 600;
-          line-height: 1.55;
+          line-height: 1.6;
           color: var(--ink);
+          font-size: clamp(16px, 1.3vw, 19px);
         }
 
         /* ───── SECTION TITLES ───── */
@@ -480,50 +495,52 @@
         .featured-card {
           display: flex;
           align-items: stretch;
-          gap: 18px;
-          padding: 18px;
+          gap: 28px;
+          padding: 28px;
           border: 2px solid #f3d8e2;
-          border-radius: 16px;
+          border-radius: 18px;
           background: var(--pink-bg);
-          max-width: 780px;
+          max-width: 1080px;
           width: 100%;
-          box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+          box-shadow: 0 6px 16px rgba(0,0,0,0.08);
           overflow: hidden;
         }
         .photo-wrap {
           display: grid;
           place-items: center;
-          width: 240px;
+          width: 320px;
           padding: 4px;
           flex-shrink: 0;
         }
         .pet-photo {
-          width: 220px;
-          height: 220px;
+          width: 300px;
+          height: 300px;
           object-fit: cover;
-          border-radius: 14px;
-          border: 3px solid #ffb6c1;
+          border-radius: 16px;
+          border: 4px solid #ffb6c1;
           display: block;
           max-width: 100%;
         }
         .pet-info { flex: 1; min-width: 0; }
         .pet-info h3 {
-          margin: 0 0 6px;
-          font-size: 1.5em;
+          margin: 0 0 8px;
+          font-size: 1.8em;
           color: var(--pink-deep);
         }
         .pet-meta {
-          font-size: 0.95em;
+          font-size: 1.05em;
           color: #666;
-          margin-bottom: 8px;
+          margin-bottom: 10px;
         }
         .pet-fee {
           font-weight: 700;
           color: #2b8a3e;
-          margin-bottom: 10px;
+          margin-bottom: 12px;
+          font-size: 1.1em;
         }
         .pet-desc {
-          margin: 0 0 14px;
+          margin: 0 0 16px;
+          font-size: 1.02em;
           line-height: 1.6;
           color: #333;
           overflow-wrap: anywhere;
@@ -537,10 +554,11 @@
         }
         .btn {
           display: inline-block;
-          padding: 10px 16px;
+          padding: 12px 22px;
           border-radius: 999px;
           text-decoration: none;
           font-weight: 700;
+          font-size: 1.05em;
           transition: transform .06s ease, box-shadow .2s ease, background .2s ease;
           box-shadow: 0 2px 6px rgba(0,0,0,0.08);
         }
@@ -574,12 +592,13 @@
         .stat-pink-soft  { background: #ffd6e8; color: var(--ink); }
         .stat-pink       { background: var(--pink); }
         .stat-label {
-          font-size: 1.1em;
-          font-weight: 600;
-          margin-bottom: 8px;
+          font-size: clamp(18px, 1.7vw, 24px);
+          font-weight: 700;
+          margin-bottom: 12px;
+          letter-spacing: .3px;
         }
         .stat-number {
-          font-size: clamp(44px, 6vw, 72px);
+          font-size: clamp(56px, 7vw, 88px);
           font-weight: 800;
           color: #ee2a4f;
           text-shadow:
@@ -589,17 +608,19 @@
             2px 2px 0 #1a1a1a;
           letter-spacing: 1px;
           line-height: 1;
-          margin: 6px 0;
+          margin: 8px 0;
         }
         .stat-tag {
-          font-size: 1.1em;
-          font-weight: 600;
-          margin-top: 6px;
+          font-size: clamp(18px, 1.7vw, 24px);
+          font-weight: 700;
+          margin-top: 10px;
+          letter-spacing: .3px;
         }
         .stat-label-only {
-          font-size: clamp(18px, 2vw, 24px);
+          font-size: clamp(22px, 2.4vw, 32px);
           font-weight: 700;
           line-height: 1.3;
+          letter-spacing: .3px;
         }
         .stat-label-only #stat-monthly {
           color: #ee2a4f;
@@ -626,22 +647,23 @@
           padding: 16px 8px;
         }
         .diff-title {
-          margin: 0 0 14px;
+          margin: 0 0 16px;
           font-weight: 600;
-          font-size: clamp(22px, 2.4vw, 28px);
+          font-size: clamp(24px, 2.6vw, 32px);
           color: #3b3b5c;
         }
         .diff-body {
           color: var(--pink);
-          line-height: 1.55;
+          line-height: 1.6;
           font-weight: 500;
-          font-size: 0.96em;
-          margin: 0 0 18px;
+          font-size: clamp(15px, 1.2vw, 17px);
+          margin: 0 0 20px;
         }
         .diff-link {
           color: #4a4a66;
           font-weight: 600;
           text-decoration: none;
+          font-size: 1.05em;
         }
         .diff-link:hover { color: var(--pink); }
 
@@ -709,22 +731,39 @@
         @media (max-width: 900px) {
           .pillar {
             grid-template-columns: 1fr;
-            gap: 12px;
+            gap: 14px;
             text-align: center;
+            padding: 28px 24px;
           }
           .pillar-icon {
-            grid-template-columns: 1fr;
-            justify-items: center;
-            gap: 6px;
+            margin: 0 auto;
           }
+          .pillar-title {
+            font-size: clamp(28px, 7vw, 36px);
+          }
+          .pillar-body {
+            font-size: 16px;
+          }
+          .stat { padding: 56px 20px; min-height: 200px; }
+          .stat-label, .stat-tag { font-size: 18px; }
+          .stat-number { font-size: 64px; }
+          .stat-label-only { font-size: 22px; }
           .stats-grid { grid-template-columns: 1fr; }
           .diff-grid { grid-template-columns: 1fr; gap: 24px; }
+          .diff-body { font-size: 16px; }
           .contact-inner { grid-template-columns: 1fr; }
           .contact-row { grid-template-columns: 1fr; gap: 6px; }
-          .featured-card { flex-direction: column; align-items: center; text-align: center; }
+          .featured-card {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            gap: 18px;
+          }
           .photo-wrap { width: 100%; }
           .pet-photo { width: 100%; height: auto; max-width: 420px; }
           .pet-actions { justify-content: center; gap: 16px; }
+          .welcome-body { font-size: 16px; }
         }
 
         @media (max-width: 520px) {
@@ -732,6 +771,7 @@
           .hero-cta { grid-template-columns: 1fr; }
           .welcome { padding: 32px 18px 8px; }
           .pillars { padding: 12px 18px; }
+          .pillar-icon { width: 64px; height: 64px; }
         }
       `;
     }
