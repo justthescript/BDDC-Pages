@@ -163,6 +163,65 @@
           </div>
         </section>
 
+        <!-- SPONSORS -->
+        <section class="sponsor-section" aria-label="Sponsors">
+          <div class="sponsor-inner">
+            <h2 class="sponsors-heading">Paws up for our amazing sponsors</h2>
+
+            <div class="sponsor-level">
+              <h3 class="level-title">Top Dog Sponsor</h3>
+              <div class="rule-heart" aria-hidden="true"><span>❤</span></div>
+              <a class="logo-card xl" href="https://merrillvilleanimalhospital.wordpress.com/?Ref=BDDC" target="_blank" rel="noopener" aria-label="Merrillville Animal Hospital">
+                <img src="https://static.wixstatic.com/media/4cb683_1a5f43878b0f4d8ba763658fc0552985~mv2.jpg" alt="Merrillville Animal Hospital" decoding="async">
+              </a>
+            </div>
+
+            <div class="sponsor-level">
+              <h3 class="level-title">Pack Leader Sponsors</h3>
+              <div class="rule-heart" aria-hidden="true"><span>❤</span></div>
+              <div class="logo-row large-row">
+                <a class="logo-card lg" href="https://www.ApprovedwithAmanda.com/?Ref=BDDC" target="_blank" rel="noopener" aria-label="Approved with Amanda">
+                  <img src="https://static.wixstatic.com/media/4cb683_86f69b6a2bb34675a259febe3aba11c6~mv2.jpg" alt="Approved with Amanda" loading="lazy" decoding="async">
+                </a>
+                <div class="logo-card lg kwhite" aria-label="Kelly White with McColly Real Estate">
+                  <div class="logo-pre">Kelly White with:</div>
+                  <a href="https://kwhite.mccolly.com/?Ref=BDDC" target="_blank" rel="noopener" aria-label="Kelly White at McColly Real Estate">
+                    <img src="https://static.wixstatic.com/media/4cb683_cbe4914489d34124a5d6b36622f5de08~mv2.png" alt="McColly Real Estate" loading="lazy" decoding="async">
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="sponsor-level">
+              <h3 class="level-title">Tail Wagger Sponsors</h3>
+              <div class="rule-heart" aria-hidden="true"><span>❤</span></div>
+              <div class="logo-row md-row">
+                <div class="logo-card md">
+                  <img src="https://static.wixstatic.com/media/4cb683_9f311e880ae649cb9df784b3b948cff4~mv2.jpg" alt="Sponsor logo" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-card md">
+                  <img src="https://static.wixstatic.com/media/4cb683_baa4fb2e8d2f4cd9a49cdbbd9c508e18~mv2.jpg" alt="Sponsor logo" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-card md">
+                  <img src="https://static.wixstatic.com/media/4cb683_d2d9aa57bea3492db25b6448305612a1~mv2.jpg" alt="Sponsor logo" loading="lazy" decoding="async">
+                </div>
+              </div>
+            </div>
+
+            <div class="sponsor-level">
+              <h3 class="level-title">Paw Pal Sponsors</h3>
+              <div class="rule-heart" aria-hidden="true"><span>❤</span></div>
+              <ul class="paw-pal">
+                <li>Who's Your Sitter? - Pet Sitting</li>
+                <li>Picture This Photobooth Rental</li>
+                <li>Culver's of Merrillville</li>
+                <li>1st American Management Co., Inc</li>
+                <li>Tina Renae Aesthetics &amp; Massage Wellness</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <!-- CONTACT -->
         <section class="contact-section">
           <div class="contact-inner">
@@ -429,7 +488,7 @@
         }
         .pillar {
           display: grid;
-          grid-template-columns: auto minmax(180px, 1.1fr) 2fr;
+          grid-template-columns: 100px minmax(200px, 1fr) minmax(0, 2.2fr);
           align-items: center;
           gap: 28px 36px;
           padding: 32px 40px;
@@ -438,6 +497,8 @@
           background: #fff;
         }
         .pillar-icon {
+          grid-column: 1;
+          grid-row: 1;
           display: grid;
           place-items: center;
           width: 80px;
@@ -455,6 +516,8 @@
           fill: #2a2a2a;
         }
         .pillar-title {
+          grid-column: 2;
+          grid-row: 1;
           margin: 0;
           color: var(--pink);
           font-size: clamp(32px, 3.8vw, 48px);
@@ -463,6 +526,8 @@
           line-height: 1.05;
         }
         .pillar-body {
+          grid-column: 3;
+          grid-row: 1;
           margin: 0;
           font-weight: 600;
           line-height: 1.6;
@@ -667,6 +732,176 @@
         }
         .diff-link:hover { color: var(--pink); }
 
+        /* ───── SPONSORS ───── */
+        .sponsor-section {
+          padding: 24px 18px 40px;
+          background: conic-gradient(from 180deg at 50% 50%, #fff 0deg, var(--pink-bg) 180deg, #fff 360deg);
+        }
+        .sponsor-inner {
+          width: min(100%, 980px);
+          margin: 0 auto;
+          background: #fff;
+          border-radius: 24px;
+          padding: 24px 20px 28px;
+          position: relative;
+          box-shadow: 0 6px 18px rgba(245,54,124,0.18);
+          border: 4px dashed var(--pink-soft);
+          overflow: hidden;
+        }
+        .sponsor-inner::before,
+        .sponsor-inner::after {
+          content: "";
+          position: absolute;
+          width: 22px;
+          height: 22px;
+          border: 4px solid var(--pink);
+          border-radius: 50%;
+          background: #fff;
+        }
+        .sponsor-inner::before { top: -12px; left: -12px; }
+        .sponsor-inner::after  { bottom: -12px; right: -12px; }
+
+        .sponsors-heading {
+          margin: 2px 0 18px;
+          font-weight: 600;
+          font-size: clamp(30px, 4vw, 44px);
+          line-height: 1.15;
+          color: var(--pink);
+          text-align: center;
+          letter-spacing: .2px;
+        }
+        .sponsor-level { margin-bottom: 22px; }
+        .level-title {
+          margin: 0 0 6px;
+          font-weight: 600;
+          font-size: clamp(22px, 2.4vw, 28px);
+          line-height: 1.2;
+          color: var(--pink);
+          text-align: center;
+          letter-spacing: .2px;
+        }
+        .rule-heart {
+          width: min(92%, 760px);
+          margin: 8px auto 14px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          color: var(--pink);
+        }
+        .rule-heart::before,
+        .rule-heart::after {
+          content: "";
+          height: 3px;
+          border-radius: 2px;
+          background: linear-gradient(90deg, rgba(245,54,124,0.15), rgba(245,54,124,0.7), rgba(245,54,124,0.15));
+          flex: 1;
+        }
+        .rule-heart span { font-size: 18px; line-height: 1; }
+
+        .logo-card {
+          display: block;
+          margin: 0 auto;
+          background: #fff;
+          border-radius: 14px;
+          padding: 12px 14px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+          max-width: 100%;
+        }
+        .logo-card img {
+          display: block;
+          width: 100%;
+          height: auto;
+          max-width: 100%;
+        }
+        .logo-card.xl {
+          width: clamp(320px, 54vw, 640px);
+          padding: 14px 16px;
+          box-shadow: 0 10px 26px rgba(245,54,124,0.22);
+        }
+
+        .logo-row {
+          display: grid;
+          justify-content: center;
+          align-items: center;
+          gap: 18px 28px;
+          margin: 6px 0;
+          max-width: 100%;
+        }
+        .large-row {
+          grid-template-columns: repeat(2, minmax(200px, 1fr));
+          max-width: 860px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .logo-card.lg {
+          width: clamp(240px, 30vw, 420px);
+          padding: 14px 16px;
+          box-shadow: 0 6px 18px rgba(245,54,124,0.18);
+        }
+        .logo-card.lg.kwhite {
+          width: clamp(200px, 24vw, 320px);
+          padding: 12px 14px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+          text-align: center;
+        }
+        .logo-card.lg.kwhite .logo-pre {
+          margin: 4px 0 6px;
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 1.2;
+          color: var(--pink);
+          letter-spacing: .2px;
+        }
+
+        .md-row {
+          grid-template-columns: repeat(3, minmax(140px, 1fr));
+          max-width: 900px;
+          margin-left: auto;
+          margin-right: auto;
+          gap: 16px 22px;
+        }
+        .logo-card.md {
+          width: clamp(150px, 18vw, 220px);
+          padding: 8px 10px;
+        }
+        .logo-card.md img {
+          max-width: 88%;
+          margin: 0 auto;
+        }
+
+        a.logo-card { transition: transform .12s ease-in-out; }
+        a.logo-card:hover { transform: translateY(-2px); }
+
+        .paw-pal {
+          list-style: none;
+          padding: 0;
+          margin: 6px auto 0;
+          max-width: 820px;
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 8px 18px;
+          font-weight: 500;
+          font-size: 18px;
+          line-height: 1.35;
+          color: var(--ink);
+        }
+        .paw-pal li {
+          position: relative;
+          padding-left: 30px;
+          background: linear-gradient(90deg, rgba(245,54,124,0.06), rgba(255,255,255,0)) no-repeat left center / 100% 100%;
+          border-radius: 10px;
+        }
+        .paw-pal li::before {
+          content: "❤";
+          position: absolute;
+          left: 8px;
+          top: 50%;
+          transform: translateY(-52%);
+          font-size: 14px;
+          color: var(--pink);
+          opacity: .95;
+        }
+
         /* ───── CONTACT ───── */
         .contact-section {
           padding: 32px 24px 60px;
@@ -731,17 +966,24 @@
         @media (max-width: 900px) {
           .pillar {
             grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto;
             gap: 14px;
             text-align: center;
             padding: 28px 24px;
           }
           .pillar-icon {
+            grid-column: 1;
+            grid-row: 1;
             margin: 0 auto;
           }
           .pillar-title {
+            grid-column: 1;
+            grid-row: 2;
             font-size: clamp(28px, 7vw, 36px);
           }
           .pillar-body {
+            grid-column: 1;
+            grid-row: 3;
             font-size: 16px;
           }
           .stat { padding: 56px 20px; min-height: 200px; }
@@ -772,6 +1014,20 @@
           .welcome { padding: 32px 18px 8px; }
           .pillars { padding: 12px 18px; }
           .pillar-icon { width: 64px; height: 64px; }
+
+          .sponsor-inner { padding: 16px 14px; }
+          .sponsor-inner::before, .sponsor-inner::after { display: none; }
+          .sponsors-heading { font-size: 28px; padding: 0 6px; }
+          .level-title { font-size: 20px; }
+          .logo-card.xl { width: 100%; max-width: 560px; padding: 12px 14px; }
+          .large-row { grid-template-columns: 1fr; }
+          .logo-card.lg { width: 100%; max-width: 420px; padding: 12px 14px; }
+          .logo-card.lg.kwhite { max-width: 340px; }
+          .md-row { grid-template-columns: 1fr; gap: 14px; }
+          .logo-card.md { width: 100%; max-width: 300px; padding: 8px 10px; }
+          .logo-card.md img { max-width: 82%; }
+          .rule-heart { width: 100%; margin: 8px 0; }
+          .paw-pal { grid-template-columns: 1fr; font-size: 16px; }
         }
       `;
     }
