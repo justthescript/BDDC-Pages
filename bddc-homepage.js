@@ -63,7 +63,7 @@
           </div>
           <div class="hero-cta">
             <a class="cta-mission" href="#mission">Our Mission</a>
-            <a class="cta-cause" href="https://airtable.com/embed/appqKxAMX4xyWWB4j/shrklnKjkfaVYmbV0?backgroundColor=gray" target="_blank" rel="noopener">Join Our Cause</a>
+            <a class="cta-cause" href="https://www.bigdogsdontcry.com/get-involved" target="_blank" rel="noopener">Join Our Cause</a>
           </div>
         </section>
 
