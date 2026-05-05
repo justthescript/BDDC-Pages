@@ -606,6 +606,10 @@ class BddcHeader extends HTMLElement {
           .mobile-actions { display: flex; }
         }
 
+        /* Short/full label switching for the Apply button on tiny screens */
+        .apply-mobile .label-short { display: none; }
+        .apply-mobile .label-full { display: inline; }
+
         @media (max-width: 480px) {
           .nav { padding: 10px 14px; gap: 10px; }
           .logo { height: 64px; }
@@ -623,16 +627,45 @@ class BddcHeader extends HTMLElement {
           }
         }
 
-        @media (max-width: 420px) {
-          .mobile-actions .apply-mobile { display: none; }
-        }
-
-        @media (max-width: 360px) {
+        /* Mid-small phones — shrink everything a touch more, keep "Apply Now" */
+        @media (max-width: 400px) {
+          .nav { padding: 9px 10px; gap: 8px; }
+          .logo { height: 58px; }
+          .header.scrolled .logo { height: 50px; }
           .logo img { max-width: 170px; }
+          .mobile-actions { gap: 5px; }
+          .mobile-actions .apply-mobile {
+            padding: 6px 10px;
+            font-size: 11.5px;
+          }
           .mobile-actions .donate-mobile {
             padding: 7px 12px;
             font-size: 11.5px;
           }
+          .mobile-actions .donate-mobile .heart {
+            width: 12px;
+            height: 12px;
+          }
+          .hamburger { width: 38px; height: 38px; }
+        }
+
+        /* Tiniest phones (≤375px including iPhone SE / 344px Android) — swap to "Apply" */
+        @media (max-width: 380px) {
+          .nav { padding: 8px 8px; gap: 6px; }
+          .logo img { max-width: 130px; }
+          .apply-mobile .label-full { display: none; }
+          .apply-mobile .label-short { display: inline; }
+          .mobile-actions .apply-mobile {
+            padding: 6px 9px;
+            font-size: 11px;
+          }
+          .mobile-actions .donate-mobile {
+            padding: 6px 10px;
+            font-size: 11px;
+            gap: 4px;
+          }
+          .hamburger { width: 36px; height: 36px; }
+          .hamburger span { width: 20px; }
         }
       </style>
 
@@ -714,7 +747,7 @@ class BddcHeader extends HTMLElement {
           </div>
 
           <div class="mobile-actions">
-            <a class="btn btn-outline apply-mobile" href="https://airtable.com/embed/appWyR26n0mjaXNwu/shrodhuFKkzL5mCjX?backgroundColor=gray" target="_blank" rel="noopener noreferrer">Apply Now</a>
+            <a class="btn btn-outline apply-mobile" href="https://airtable.com/embed/appWyR26n0mjaXNwu/shrodhuFKkzL5mCjX?backgroundColor=gray" target="_blank" rel="noopener noreferrer"><span class="label-full">Apply Now</span><span class="label-short">Apply</span></a>
             <a class="btn btn-primary donate-mobile" href="https://www.bigdogsdontcry.com/donations" target="_top">
               ${this.heartSvg()} Donate
             </a>
