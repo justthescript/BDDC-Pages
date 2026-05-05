@@ -63,7 +63,7 @@
           </div>
           <div class="hero-cta">
             <a class="cta-mission" href="https://www.bigdogsdontcry.com/who-we-are">Our Mission</a>
-            <a class="cta-cause" href="https://www.bigdogsdontcry.com/volunteer" target="_blank" rel="noopener">Join Our Cause</a>
+            <a class="cta-cause" href="https://www.bigdogsdontcry.com/volunteer">Join Our Cause</a>
           </div>
         </section>
 
