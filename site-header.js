@@ -611,10 +611,20 @@ class BddcHeader extends HTMLElement {
           .logo { height: 64px; }
           .header.scrolled .logo { height: 56px; }
           .logo img { max-width: 210px; }
+          .mobile-actions { gap: 6px; }
+          .mobile-actions .apply-mobile {
+            padding: 7px 12px;
+            font-size: 12.5px;
+            border-width: 1.5px;
+          }
           .mobile-actions .donate-mobile {
             padding: 8px 14px;
             font-size: 12.5px;
           }
+        }
+
+        @media (max-width: 420px) {
+          .mobile-actions .apply-mobile { display: none; }
         }
 
         @media (max-width: 360px) {
@@ -668,8 +678,6 @@ class BddcHeader extends HTMLElement {
               <div class="dropdown-menu" role="menu">
                 <a class="dropdown-link" href="https://www.bigdogsdontcry.com/adoption-requirements" target="_top">Adoption Requirements</a>
                 <a class="dropdown-link" href="https://www.bigdogsdontcry.com/foster-requirements" target="_top">Foster Requirements</a>
-                <a class="dropdown-link" href="https://www.bigdogsdontcry.com/volunteer" target="_top">Ways to Volunteer</a>
-                <a class="dropdown-link" href="https://www.bigdogsdontcry.com/adoption-information" target="_top">What's Included: Adoption</a>
               </div>
             </li>
 
@@ -680,7 +688,7 @@ class BddcHeader extends HTMLElement {
               </button>
               <div class="dropdown-menu" role="menu">
                 <a class="dropdown-link" href="https://www.bigdogsdontcry.com/who-we-are" target="_top">Who We Are</a>
-                <a class="dropdown-link" href="https://www.bigdogsdontcry.com/volunteers" target="_top">Top Volunteers</a>
+                <a class="dropdown-link" href="https://www.bigdogsdontcry.com/volunteers" target="_top">Volunteers</a>
                 <a class="dropdown-link" href="https://www.bigdogsdontcry.com/contact-us-now" target="_top">Contact Us</a>
               </div>
             </li>
@@ -706,6 +714,7 @@ class BddcHeader extends HTMLElement {
           </div>
 
           <div class="mobile-actions">
+            <a class="btn btn-outline apply-mobile" href="https://airtable.com/embed/appWyR26n0mjaXNwu/shrodhuFKkzL5mCjX?backgroundColor=gray" target="_blank" rel="noopener noreferrer">Apply Now</a>
             <a class="btn btn-primary donate-mobile" href="https://www.bigdogsdontcry.com/donations" target="_top">
               ${this.heartSvg()} Donate
             </a>
@@ -761,7 +770,7 @@ class BddcHeader extends HTMLElement {
               <div class="mobile-submenu">
                 <a class="mobile-sublink" href="https://www.bigdogsdontcry.com/adoption-requirements" target="_top">Adoption Requirements</a>
                 <a class="mobile-sublink" href="https://www.bigdogsdontcry.com/foster-requirements" target="_top">Foster Requirements</a>
-                <a class="mobile-sublink" href="https://www.bigdogsdontcry.com/volunteer" target="_top">Ways to Volunteer</a>
+                <a class="mobile-sublink" href="https://www.bigdogsdontcry.com/Volunteer" target="_top">Ways to Volunteer</a>
                 <a class="mobile-sublink" href="https://www.bigdogsdontcry.com/adoption-information" target="_top">What's Included: Adoption</a>
 
               </div>
@@ -774,7 +783,7 @@ class BddcHeader extends HTMLElement {
               </button>
               <div class="mobile-submenu">
                 <a class="mobile-sublink" href="https://www.bigdogsdontcry.com/who-we-are" target="_top">Who We Are</a>
-                <a class="mobile-sublink" href="https://www.bigdogsdontcry.com/volunteers" target="_top">Top Volunteers</a>
+                <a class="mobile-sublink" href="https://www.bigdogsdontcry.com/volunteer" target="_top">Top Volunteers</a>
                 <a class="mobile-sublink" href="https://www.bigdogsdontcry.com/contact-us-now" target="_top">Contact Us</a>
               </div>
             </li>
