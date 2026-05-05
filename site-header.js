@@ -615,7 +615,7 @@ class BddcHeader extends HTMLElement {
           .logo { height: 64px; }
           .header.scrolled .logo { height: 56px; }
           .logo img { max-width: 210px; }
-          .mobile-actions { gap: 6px; }
+          .mobile-actions { gap: 10px; }
           .mobile-actions .apply-mobile {
             padding: 7px 12px;
             font-size: 12.5px;
@@ -633,7 +633,7 @@ class BddcHeader extends HTMLElement {
           .logo { height: 58px; }
           .header.scrolled .logo { height: 50px; }
           .logo img { max-width: 170px; }
-          .mobile-actions { gap: 5px; }
+          .mobile-actions { gap: 8px; }
           .mobile-actions .apply-mobile {
             padding: 6px 10px;
             font-size: 11.5px;
@@ -651,16 +651,17 @@ class BddcHeader extends HTMLElement {
 
         /* Tiniest phones (≤375px including iPhone SE / 344px Android) — swap to "Apply" */
         @media (max-width: 380px) {
-          .nav { padding: 8px 8px; gap: 6px; }
+          .nav { padding: 8px 10px; gap: 8px; }
           .logo img { max-width: 130px; }
           .apply-mobile .label-full { display: none; }
           .apply-mobile .label-short { display: inline; }
+          .mobile-actions { gap: 7px; }
           .mobile-actions .apply-mobile {
-            padding: 6px 9px;
+            padding: 6px 11px;
             font-size: 11px;
           }
           .mobile-actions .donate-mobile {
-            padding: 6px 10px;
+            padding: 6px 11px;
             font-size: 11px;
             gap: 4px;
           }
