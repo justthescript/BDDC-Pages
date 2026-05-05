@@ -668,7 +668,7 @@ class BddcHeader extends HTMLElement {
               <div class="dropdown-menu" role="menu">
                 <a class="dropdown-link" href="https://www.bigdogsdontcry.com/adoption-requirements" target="_top">Adoption Requirements</a>
                 <a class="dropdown-link" href="https://www.bigdogsdontcry.com/foster-requirements" target="_top">Foster Requirements</a>
-                <a class="dropdown-link" href="https://www.bigdogsdontcry.com/Volunteer" target="_top">Ways to Volunteer</a>
+                <a class="dropdown-link" href="https://www.bigdogsdontcry.com/volunteer" target="_top">Ways to Volunteer</a>
                 <a class="dropdown-link" href="https://www.bigdogsdontcry.com/adoption-information" target="_top">What's Included: Adoption</a>
               </div>
             </li>
