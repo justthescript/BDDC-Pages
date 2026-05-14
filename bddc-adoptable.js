@@ -215,6 +215,7 @@
 
     async connectedCallback() {
       this.renderShell();
+      this.bindEvents();
       try {
         const pets = await fetchPets();
         this.state.pets = pets;
@@ -226,7 +227,6 @@
         this.state.error = err.message || 'Could not load adoptable pets.';
         this.renderResults();
       }
-      this.bindEvents();
     }
 
     disconnectedCallback() {
@@ -359,13 +359,15 @@
       // Search
       const searchInput = root.getElementById('f-search');
       let searchTimer = null;
-      searchInput.addEventListener('input', (e) => {
+      const onSearchInput = () => {
         clearTimeout(searchTimer);
         searchTimer = setTimeout(() => {
-          this.state.filters.search = e.target.value.trim().toLowerCase();
+          this.state.filters.search = searchInput.value.trim().toLowerCase();
           this.renderResults();
         }, 120);
-      });
+      };
+      searchInput.addEventListener('input', onSearchInput);
+      searchInput.addEventListener('change', onSearchInput);
 
       // Chip clicks (delegated)
       root.querySelector('.filter-card').addEventListener('click', (e) => {
