@@ -172,7 +172,7 @@
               Paying an adoption fee, foster reimbursement, or another rescue-related fee?
               Use our secure payments page below.
             </p>
-            <a class="btn btn-primary" href="https://www.bigdogsdontcry.com/payments" target="_top">
+            <a class="btn btn-primary" href="https://www.bigdogsdontcry.com/adoption-payment" target="_top">
               ${this.cardSvg()} Make a Payment <span class="arrow">→</span>
             </a>
           </section>
