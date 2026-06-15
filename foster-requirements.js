@@ -36,7 +36,6 @@
         'If renting, you must have landlord approval for pets and provide written permission',
         'A safe, secure environment for the foster dog',
         'All household members must meet the foster dog and agree to participate',
-        'Children in the household must be at least 7 years old'
       ]
     },
     {
