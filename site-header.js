@@ -704,6 +704,10 @@ class BddcHeader extends HTMLElement {
               <a class="nav-link" href="https://www.bigdogsdontcry.com/events" target="_top" role="menuitem">Events</a>
             </li>
 
+            <li role="none">
+              <a class="nav-link" href="https://www.zeffy.com/en-US/ticketing/big-dogs-dont-cry-merch-shop" target="_blank" rel="noopener noreferrer" role="menuitem">Shop</a>
+            </li>
+
             <li class="dropdown" role="none">
               <button class="dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false" role="menuitem">
                 FAQs
@@ -794,6 +798,10 @@ class BddcHeader extends HTMLElement {
 
             <li class="mobile-item">
               <a class="mobile-link" href="https://www.bigdogsdontcry.com/events" target="_top">Events</a>
+            </li>
+
+            <li class="mobile-item">
+              <a class="mobile-link" href="https://www.zeffy.com/en-US/ticketing/big-dogs-dont-cry-merch-shop" target="_blank" rel="noopener noreferrer">Shop</a>
             </li>
 
             <li class="mobile-item">
