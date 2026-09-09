@@ -23,17 +23,25 @@
 // Anniversary promo bar — remove this block (and its call sites below) once the campaign ends
 const PROMO_TICKET_URL = 'https://www.zeffy.com/en-US/ticketing/2nd-year-anniversary-celebration-2';
 const PROMO_LEARN_MORE_URL = 'https://www.bigdogsdontcry.com/bddc-anniversary';
-const PROMO_EVENT_DATE = new Date('2026-10-04T00:00:00');
 const PROMO_DISMISS_KEY = 'bddc-promo-anniversary-dismissed';
 // Reuses the same signature rescue photo used site-wide as the default page hero
 const PROMO_DOG_IMAGE = 'https://source.roboflow.com/Y9smMJiA6ChaOzouCuCKrquv1Zg1/2vZdFHO0AQEK1RrLIN1u/original.jpg';
+// Ticket sales end at midnight CST on 9/28 — i.e. the instant 9/28 rolls into 9/29 (fixed -06:00 offset, not DST-adjusted)
+const PROMO_SALES_END = new Date('2026-09-29T00:00:00-06:00').getTime();
 
-function promoCountdown() {
-  const diffDays = Math.ceil((PROMO_EVENT_DATE - new Date()) / (1000 * 60 * 60 * 24));
-  if (diffDays > 1) return { num: String(diffDays), label: 'Days To Go' };
-  if (diffDays === 1) return { num: '1', label: 'Day To Go' };
-  if (diffDays === 0) return { num: '🎉', label: 'It\'s Today!' };
-  return null;
+function promoTimeLeft() {
+  const diff = PROMO_SALES_END - Date.now();
+  if (diff <= 0) return null;
+  return {
+    days: Math.floor(diff / 86400000),
+    hours: Math.floor((diff % 86400000) / 3600000),
+    mins: Math.floor((diff % 3600000) / 60000),
+    secs: Math.floor((diff % 60000) / 1000)
+  };
+}
+
+function promoPad2(n) {
+  return String(n).padStart(2, '0');
 }
 
 class BddcHeader extends HTMLElement {
@@ -45,12 +53,40 @@ class BddcHeader extends HTMLElement {
     const shadow = this.attachShadow({ mode: 'open' });
     shadow.innerHTML = this.template();
     this.initInteractions(shadow);
+    this.startPromoTimer(shadow);
   }
 
   disconnectedCallback() {
     if (this._scrollHandler) window.removeEventListener('scroll', this._scrollHandler);
     if (this._resizeHandler) window.removeEventListener('resize', this._resizeHandler);
+    if (this._promoTimerInterval) clearInterval(this._promoTimerInterval);
     document.body.style.overflow = '';
+  }
+
+  // Ticks the sales-end countdown once a second without re-rendering the whole header
+  startPromoTimer(shadow) {
+    const block = shadow.querySelector('.promo-countdown-block');
+    if (!block) return;
+
+    const tick = () => {
+      const t = promoTimeLeft();
+      if (!t) {
+        block.innerHTML = '<span class="promo-countdown-ended">🎟️ Ticket Sales Have Ended</span>';
+        clearInterval(this._promoTimerInterval);
+        return;
+      }
+      const days = block.querySelector('[data-unit="days"]');
+      const hours = block.querySelector('[data-unit="hours"]');
+      const mins = block.querySelector('[data-unit="mins"]');
+      const secs = block.querySelector('[data-unit="secs"]');
+      if (days) days.textContent = promoPad2(t.days);
+      if (hours) hours.textContent = promoPad2(t.hours);
+      if (mins) mins.textContent = promoPad2(t.mins);
+      if (secs) secs.textContent = promoPad2(t.secs);
+    };
+
+    tick();
+    this._promoTimerInterval = setInterval(tick, 1000);
   }
 
   template() {
@@ -227,24 +263,61 @@ class BddcHeader extends HTMLElement {
           background: #fff;
           color: var(--primary-dark);
           border-radius: 16px;
-          padding: 8px 22px;
-          min-width: 96px;
+          padding: 9px 20px;
           box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
         }
 
-        .promo-countdown-num {
-          font-size: 32px;
+        .promo-countdown-caption {
+          font-size: 10.5px;
+          font-weight: 800;
+          letter-spacing: 0.6px;
+          text-transform: uppercase;
+          margin-bottom: 5px;
+          white-space: nowrap;
+        }
+
+        .promo-timer {
+          display: flex;
+          align-items: flex-start;
+          gap: 5px;
+        }
+
+        .promo-timer-seg {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          min-width: 32px;
+        }
+
+        .promo-timer-num {
+          font-size: 26px;
           font-weight: 800;
           line-height: 1;
           letter-spacing: -0.5px;
+          font-variant-numeric: tabular-nums;
         }
 
-        .promo-countdown-label {
-          font-size: 10.5px;
+        .promo-timer-label {
+          font-size: 9px;
           font-weight: 700;
-          letter-spacing: 1px;
+          letter-spacing: 0.5px;
           text-transform: uppercase;
           margin-top: 3px;
+          opacity: 0.65;
+          white-space: nowrap;
+        }
+
+        .promo-timer-colon {
+          font-size: 22px;
+          font-weight: 800;
+          line-height: 1;
+          opacity: 0.35;
+          padding-top: 1px;
+        }
+
+        .promo-countdown-ended {
+          font-size: 14px;
+          font-weight: 800;
           white-space: nowrap;
         }
 
@@ -387,9 +460,12 @@ class BddcHeader extends HTMLElement {
           .promo-photo-frame { width: 64px; height: 64px; border-radius: 14px; }
           .promo-eyebrow { font-size: 16px; }
           .promo-date { font-size: 12px; }
-          .promo-countdown-block { padding: 6px 16px; min-width: 76px; }
-          .promo-countdown-num { font-size: 24px; }
-          .promo-countdown-label { font-size: 9px; }
+          .promo-countdown-block { padding: 7px 14px; width: 100%; }
+          .promo-countdown-caption { font-size: 9.5px; }
+          .promo-timer-num { font-size: 21px; }
+          .promo-timer-label { font-size: 8px; }
+          .promo-timer-colon { font-size: 18px; }
+          .promo-timer-seg { min-width: 26px; }
           .promo-feature-badge { font-size: 11.5px; padding: 5px 11px; }
           .promo-price { font-size: 11.5px; padding: 6px 13px; }
           .promo-actions { flex-direction: column; }
@@ -1004,14 +1080,18 @@ class BddcHeader extends HTMLElement {
               <div class="promo-eyebrow">🎉 2nd Year Anniversary Celebration</div>
               <div class="promo-date">📅 Sunday, October 4, 2026</div>
             </div>
-            ${(() => {
-              const cd = promoCountdown();
-              return cd ? `
-              <div class="promo-countdown-block">
-                <span class="promo-countdown-num">${cd.num}</span>
-                <span class="promo-countdown-label">${cd.label}</span>
-              </div>` : '';
-            })()}
+            <div class="promo-countdown-block" role="timer" aria-label="Ticket sales countdown">
+              <div class="promo-countdown-caption">🎟️ Tickets End Sept 28</div>
+              <div class="promo-timer">
+                <div class="promo-timer-seg"><span class="promo-timer-num" data-unit="days">00</span><span class="promo-timer-label">Days</span></div>
+                <span class="promo-timer-colon">:</span>
+                <div class="promo-timer-seg"><span class="promo-timer-num" data-unit="hours">00</span><span class="promo-timer-label">Hrs</span></div>
+                <span class="promo-timer-colon">:</span>
+                <div class="promo-timer-seg"><span class="promo-timer-num" data-unit="mins">00</span><span class="promo-timer-label">Min</span></div>
+                <span class="promo-timer-colon">:</span>
+                <div class="promo-timer-seg"><span class="promo-timer-num" data-unit="secs">00</span><span class="promo-timer-label">Sec</span></div>
+              </div>
+            </div>
           </div>
           <div class="promo-row-bottom">
             <div class="promo-badges">
