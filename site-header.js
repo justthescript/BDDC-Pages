@@ -25,13 +25,15 @@ const PROMO_TICKET_URL = 'https://www.zeffy.com/en-US/ticketing/2nd-year-anniver
 const PROMO_LEARN_MORE_URL = 'https://www.bigdogsdontcry.com/bddc-anniversary';
 const PROMO_EVENT_DATE = new Date('2026-10-04T00:00:00');
 const PROMO_DISMISS_KEY = 'bddc-promo-anniversary-dismissed';
+// Reuses the same signature rescue photo used site-wide as the default page hero
+const PROMO_DOG_IMAGE = 'https://static.wixstatic.com/media/bc59b6_604fb6f09a314f219daf30e354c81e5a~mv2.webp';
 
-function promoCountdownLabel() {
+function promoCountdown() {
   const diffDays = Math.ceil((PROMO_EVENT_DATE - new Date()) / (1000 * 60 * 60 * 24));
-  if (diffDays > 1) return `⏳ ${diffDays} days to go!`;
-  if (diffDays === 1) return '⏳ 1 day to go!';
-  if (diffDays === 0) return "🎉 It's today!";
-  return '';
+  if (diffDays > 1) return { num: String(diffDays), label: 'Days To Go' };
+  if (diffDays === 1) return { num: '1', label: 'Day To Go' };
+  if (diffDays === 0) return { num: '🎉', label: 'It\'s Today!' };
+  return null;
 }
 
 class BddcHeader extends HTMLElement {
@@ -96,20 +98,20 @@ class BddcHeader extends HTMLElement {
         .promo-bar {
           position: relative;
           overflow: hidden;
-          background: linear-gradient(90deg, var(--primary-dark) 0%, var(--primary) 45%, #ff7a3d 100%);
+          background: linear-gradient(115deg, var(--primary-dark) 0%, var(--primary) 42%, #ff7a3d 100%);
           color: #fff;
         }
 
         /* Diagonal paw-print texture, purely decorative */
         .promo-bar::before {
-          content: '🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾';
+          content: '🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾';
           position: absolute;
           inset: -10px -20px;
-          font-size: 26px;
-          line-height: 60px;
-          letter-spacing: 34px;
+          font-size: 30px;
+          line-height: 64px;
+          letter-spacing: 30px;
           white-space: nowrap;
-          opacity: 0.09;
+          opacity: 0.08;
           transform: rotate(-6deg);
           pointer-events: none;
         }
@@ -136,82 +138,152 @@ class BddcHeader extends HTMLElement {
         .promo-inner {
           max-width: 1400px;
           margin: 0 auto;
-          padding: 10px 48px 10px 24px;
+          padding: 18px 56px 18px 24px;
           display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 16px;
-          flex-wrap: wrap;
-          text-align: left;
+          flex-direction: column;
+          gap: 14px;
           position: relative;
         }
 
-        .promo-badge {
+        .promo-row-top {
+          display: flex;
+          align-items: center;
+          gap: 18px;
+          flex-wrap: wrap;
+        }
+
+        .promo-photo-frame {
+          position: relative;
           flex-shrink: 0;
-          width: 38px;
-          height: 38px;
+          width: 88px;
+          height: 88px;
+          border-radius: 18px;
+          overflow: hidden;
+          border: 3px solid rgba(255, 255, 255, 0.85);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+          background: rgba(255, 255, 255, 0.18);
+        }
+
+        .promo-photo-frame img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center 40%;
+          display: block;
+        }
+
+        .promo-photo-paw {
+          position: absolute;
+          bottom: -6px;
+          right: -6px;
+          width: 30px;
+          height: 30px;
           border-radius: 50%;
-          background: rgba(255, 255, 255, 0.22);
-          border: 1.5px solid rgba(255, 255, 255, 0.45);
+          background: #fff;
+          color: var(--primary-dark);
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 19px;
+          font-size: 15px;
+          box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
           animation: promoBounce 2.4s ease-in-out infinite;
         }
 
         @keyframes promoBounce {
           0%, 100% { transform: translateY(0) rotate(0deg); }
-          25%      { transform: translateY(-3px) rotate(-6deg); }
+          25%      { transform: translateY(-3px) rotate(-8deg); }
           50%      { transform: translateY(0) rotate(0deg); }
-          75%      { transform: translateY(-2px) rotate(5deg); }
+          75%      { transform: translateY(-2px) rotate(6deg); }
         }
 
-        .promo-main {
+        .promo-headline {
           display: flex;
           flex-direction: column;
-          gap: 2px;
+          gap: 4px;
           min-width: 0;
         }
 
-        .promo-title {
-          font-size: 14.5px;
-          font-weight: 700;
-          line-height: 1.35;
+        .promo-eyebrow {
+          font-size: clamp(18px, 2.1vw, 23px);
+          font-weight: 800;
+          line-height: 1.25;
           letter-spacing: 0.1px;
+          text-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
         }
 
-        .promo-countdown {
-          display: inline-block;
-          margin-left: 8px;
-          font-size: 11px;
-          font-weight: 700;
-          color: var(--primary-dark);
+        .promo-date {
+          font-size: 13.5px;
+          font-weight: 600;
+          opacity: 0.95;
+        }
+
+        .promo-countdown-block {
+          margin-left: auto;
+          flex-shrink: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
           background: #fff;
-          padding: 2px 10px;
-          border-radius: var(--radius-pill);
-          vertical-align: middle;
+          color: var(--primary-dark);
+          border-radius: 16px;
+          padding: 8px 22px;
+          min-width: 96px;
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .promo-countdown-num {
+          font-size: 32px;
+          font-weight: 800;
+          line-height: 1;
+          letter-spacing: -0.5px;
+        }
+
+        .promo-countdown-label {
+          font-size: 10.5px;
+          font-weight: 700;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          margin-top: 3px;
           white-space: nowrap;
         }
 
-        .promo-meta {
-          font-size: 12px;
-          font-weight: 500;
-          line-height: 1.5;
-          opacity: 0.95;
+        .promo-row-bottom {
           display: flex;
-          flex-wrap: wrap;
           align-items: center;
-          gap: 6px 10px;
+          gap: 10px 14px;
+          flex-wrap: wrap;
         }
 
-        .promo-meta-dot { opacity: 0.6; }
+        .promo-badges {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+        }
 
-        .promo-urgency {
-          font-weight: 700;
-          background: rgba(255, 255, 255, 0.2);
-          padding: 2px 9px;
+        .promo-feature-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          background: rgba(255, 255, 255, 0.18);
+          border: 1px solid rgba(255, 255, 255, 0.4);
+          padding: 6px 13px;
           border-radius: var(--radius-pill);
+          font-size: 12.5px;
+          font-weight: 700;
+          white-space: nowrap;
+        }
+
+        .promo-price {
+          flex-shrink: 0;
+          background: #fff;
+          color: var(--primary-dark);
+          font-weight: 800;
+          font-size: 12.5px;
+          padding: 7px 16px;
+          border-radius: var(--radius-pill);
+          white-space: nowrap;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
         }
 
         .promo-actions {
@@ -219,6 +291,7 @@ class BddcHeader extends HTMLElement {
           align-items: center;
           gap: 8px;
           flex-shrink: 0;
+          margin-left: auto;
         }
 
         .promo-cta {
@@ -275,13 +348,12 @@ class BddcHeader extends HTMLElement {
 
         .promo-close {
           position: absolute;
-          top: 50%;
-          right: 12px;
-          transform: translateY(-50%);
-          background: transparent;
+          top: 14px;
+          right: 14px;
+          background: rgba(255, 255, 255, 0.14);
           border: 0;
           color: #fff;
-          opacity: 0.8;
+          opacity: 0.85;
           cursor: pointer;
           width: 26px;
           height: 26px;
@@ -294,28 +366,34 @@ class BddcHeader extends HTMLElement {
         }
 
         .promo-close:hover {
-          background: rgba(255, 255, 255, 0.2);
+          background: rgba(255, 255, 255, 0.28);
           opacity: 1;
         }
 
         .promo-close svg { width: 12px; height: 12px; }
 
         @media (prefers-reduced-motion: reduce) {
-          .promo-badge, .promo-cta, .promo-bar::after { animation: none; }
+          .promo-photo-paw, .promo-cta, .promo-bar::after { animation: none; }
         }
 
         @media (max-width: 860px) {
-          .promo-inner { justify-content: flex-start; text-align: left; }
+          .promo-countdown-block { margin-left: 0; }
+          .promo-actions { margin-left: 0; width: 100%; }
         }
 
         @media (max-width: 640px) {
-          .promo-inner { padding: 10px 40px 12px 16px; gap: 8px 12px; }
-          .promo-badge { width: 32px; height: 32px; font-size: 16px; }
-          .promo-title { font-size: 13px; }
-          .promo-countdown { font-size: 10px; padding: 2px 8px; margin-left: 6px; }
-          .promo-meta { font-size: 11px; }
-          .promo-actions { width: 100%; margin-top: 2px; }
-          .promo-cta, .promo-cta-secondary { flex: 1; justify-content: center; font-size: 12.5px; padding: 9px 14px; }
+          .promo-inner { padding: 16px 44px 16px 16px; gap: 12px; }
+          .promo-row-top { gap: 12px; }
+          .promo-photo-frame { width: 64px; height: 64px; border-radius: 14px; }
+          .promo-eyebrow { font-size: 16px; }
+          .promo-date { font-size: 12px; }
+          .promo-countdown-block { padding: 6px 16px; min-width: 76px; }
+          .promo-countdown-num { font-size: 24px; }
+          .promo-countdown-label { font-size: 9px; }
+          .promo-feature-badge { font-size: 11.5px; padding: 5px 11px; }
+          .promo-price { font-size: 11.5px; padding: 6px 13px; }
+          .promo-actions { flex-direction: column; }
+          .promo-cta, .promo-cta-secondary { width: 100%; justify-content: center; font-size: 13px; padding: 10px 16px; }
         }
 
         /* Header */
@@ -917,23 +995,36 @@ class BddcHeader extends HTMLElement {
       ${this._promoDismissed ? '' : `
       <div class="promo-bar" role="region" aria-label="2nd Year Anniversary Celebration announcement">
         <div class="promo-inner">
-          <div class="promo-badge" aria-hidden="true">🐾</div>
-          <div class="promo-main">
-            <div class="promo-title">
-              🎉 2nd Year Anniversary Celebration
-              ${promoCountdownLabel() ? `<span class="promo-countdown">${promoCountdownLabel()}</span>` : ''}
+          <div class="promo-row-top">
+            <div class="promo-photo-frame">
+              <img src="${PROMO_DOG_IMAGE}" alt="Big Dogs Don't Cry rescue dog" loading="lazy" onerror="this.remove();" />
+              <span class="promo-photo-paw" aria-hidden="true">🐾</span>
             </div>
-            <div class="promo-meta">
-              <span class="promo-meta-item">📅 Sun, Oct 4, 2026</span>
-              <span class="promo-meta-dot">•</span>
-              <span class="promo-meta-item">📍 Merrillville, IN</span>
-              <span class="promo-meta-dot">•</span>
-              <span class="promo-meta-item promo-urgency">🔥 Only 1 Top Dog sponsorship left!</span>
+            <div class="promo-headline">
+              <div class="promo-eyebrow">🎉 2nd Year Anniversary Celebration</div>
+              <div class="promo-date">📅 Sunday, October 4, 2026</div>
             </div>
+            ${(() => {
+              const cd = promoCountdown();
+              return cd ? `
+              <div class="promo-countdown-block">
+                <span class="promo-countdown-num">${cd.num}</span>
+                <span class="promo-countdown-label">${cd.label}</span>
+              </div>` : '';
+            })()}
           </div>
-          <div class="promo-actions">
-            <a class="promo-cta-secondary" href="${PROMO_LEARN_MORE_URL}" target="_top">Learn More</a>
-            <a class="promo-cta" href="${PROMO_TICKET_URL}" target="_blank" rel="noopener noreferrer">🎟️ Sponsor / Buy Tickets</a>
+          <div class="promo-row-bottom">
+            <div class="promo-badges">
+              <span class="promo-feature-badge">🏆 Awards</span>
+              <span class="promo-feature-badge">🎟️ Raffles</span>
+              <span class="promo-feature-badge">🔨 Silent Auction</span>
+              <span class="promo-feature-badge">🍽️ Dinner</span>
+            </div>
+            <div class="promo-price">General Admission $45</div>
+            <div class="promo-actions">
+              <a class="promo-cta-secondary" href="${PROMO_LEARN_MORE_URL}" target="_top">Learn More</a>
+              <a class="promo-cta" href="${PROMO_TICKET_URL}" target="_blank" rel="noopener noreferrer">🎟️ Sponsor / Buy Tickets</a>
+            </div>
           </div>
           <button class="promo-close" type="button" aria-label="Dismiss announcement">${this.closeSvg()}</button>
         </div>
