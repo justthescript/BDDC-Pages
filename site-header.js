@@ -26,7 +26,7 @@ const PROMO_LEARN_MORE_URL = 'https://www.bigdogsdontcry.com/bddc-anniversary';
 const PROMO_EVENT_DATE = new Date('2026-10-04T00:00:00');
 const PROMO_DISMISS_KEY = 'bddc-promo-anniversary-dismissed';
 // Reuses the same signature rescue photo used site-wide as the default page hero
-const PROMO_DOG_IMAGE = 'https://static.wixstatic.com/media/bc59b6_604fb6f09a314f219daf30e354c81e5a~mv2.webp';
+const PROMO_DOG_IMAGE = 'https://source.roboflow.com/Y9smMJiA6ChaOzouCuCKrquv1Zg1/2vZdFHO0AQEK1RrLIN1u/original.jpg';
 
 function promoCountdown() {
   const diffDays = Math.ceil((PROMO_EVENT_DATE - new Date()) / (1000 * 60 * 60 * 24));
