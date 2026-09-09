@@ -22,7 +22,17 @@
 
 // Anniversary promo bar — remove this block (and its call sites below) once the campaign ends
 const PROMO_TICKET_URL = 'https://www.zeffy.com/en-US/ticketing/2nd-year-anniversary-celebration-2';
+const PROMO_LEARN_MORE_URL = 'https://www.bigdogsdontcry.com/bddc-anniversary';
+const PROMO_EVENT_DATE = new Date('2026-10-04T00:00:00');
 const PROMO_DISMISS_KEY = 'bddc-promo-anniversary-dismissed';
+
+function promoCountdownLabel() {
+  const diffDays = Math.ceil((PROMO_EVENT_DATE - new Date()) / (1000 * 60 * 60 * 24));
+  if (diffDays > 1) return `⏳ ${diffDays} days to go!`;
+  if (diffDays === 1) return '⏳ 1 day to go!';
+  if (diffDays === 0) return "🎉 It's today!";
+  return '';
+}
 
 class BddcHeader extends HTMLElement {
   connectedCallback() {
@@ -84,51 +94,190 @@ class BddcHeader extends HTMLElement {
 
         /* Anniversary promo bar */
         .promo-bar {
-          background: linear-gradient(90deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-dark) 100%);
+          position: relative;
+          overflow: hidden;
+          background: linear-gradient(90deg, var(--primary-dark) 0%, var(--primary) 45%, #ff7a3d 100%);
           color: #fff;
+        }
+
+        /* Diagonal paw-print texture, purely decorative */
+        .promo-bar::before {
+          content: '🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾';
+          position: absolute;
+          inset: -10px -20px;
+          font-size: 26px;
+          line-height: 60px;
+          letter-spacing: 34px;
+          white-space: nowrap;
+          opacity: 0.09;
+          transform: rotate(-6deg);
+          pointer-events: none;
+        }
+
+        /* Slow light sweep for extra shimmer */
+        .promo-bar::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: -40%;
+          width: 30%;
+          background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.16) 50%, transparent 100%);
+          animation: promoShimmer 5s ease-in-out infinite;
+          pointer-events: none;
+        }
+
+        @keyframes promoShimmer {
+          0%   { left: -40%; }
+          60%  { left: 130%; }
+          100% { left: 130%; }
         }
 
         .promo-inner {
           max-width: 1400px;
           margin: 0 auto;
-          padding: 9px 24px;
+          padding: 10px 48px 10px 24px;
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 14px;
+          gap: 16px;
           flex-wrap: wrap;
-          text-align: center;
+          text-align: left;
           position: relative;
         }
 
-        .promo-text {
-          font-size: 13.5px;
-          font-weight: 600;
-          line-height: 1.4;
+        .promo-badge {
+          flex-shrink: 0;
+          width: 38px;
+          height: 38px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.22);
+          border: 1.5px solid rgba(255, 255, 255, 0.45);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 19px;
+          animation: promoBounce 2.4s ease-in-out infinite;
         }
 
-        .promo-text strong { font-weight: 700; }
+        @keyframes promoBounce {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          25%      { transform: translateY(-3px) rotate(-6deg); }
+          50%      { transform: translateY(0) rotate(0deg); }
+          75%      { transform: translateY(-2px) rotate(5deg); }
+        }
 
-        .promo-cta {
-          flex-shrink: 0;
-          font-size: 12.5px;
+        .promo-main {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          min-width: 0;
+        }
+
+        .promo-title {
+          font-size: 14.5px;
+          font-weight: 700;
+          line-height: 1.35;
+          letter-spacing: 0.1px;
+        }
+
+        .promo-countdown {
+          display: inline-block;
+          margin-left: 8px;
+          font-size: 11px;
           font-weight: 700;
           color: var(--primary-dark);
           background: #fff;
-          padding: 6px 16px;
+          padding: 2px 10px;
+          border-radius: var(--radius-pill);
+          vertical-align: middle;
+          white-space: nowrap;
+        }
+
+        .promo-meta {
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 1.5;
+          opacity: 0.95;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 6px 10px;
+        }
+
+        .promo-meta-dot { opacity: 0.6; }
+
+        .promo-urgency {
+          font-weight: 700;
+          background: rgba(255, 255, 255, 0.2);
+          padding: 2px 9px;
+          border-radius: var(--radius-pill);
+        }
+
+        .promo-actions {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          flex-shrink: 0;
+        }
+
+        .promo-cta {
+          flex-shrink: 0;
+          font-size: 13px;
+          font-weight: 700;
+          color: var(--primary-dark);
+          background: #fff;
+          padding: 9px 20px;
           border-radius: var(--radius-pill);
           text-decoration: none;
           white-space: nowrap;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
           transition: transform var(--transition), box-shadow var(--transition);
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18), 0 0 0 0 rgba(255, 255, 255, 0.6);
+          animation: promoPulse 2.6s ease-in-out infinite;
+        }
+
+        @keyframes promoPulse {
+          0%, 100% { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18), 0 0 0 0 rgba(255, 255, 255, 0.5); }
+          50%      { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18), 0 0 0 7px rgba(255, 255, 255, 0); }
         }
 
         .promo-cta:hover {
+          transform: translateY(-1px) scale(1.03);
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.26);
+          animation-play-state: paused;
+        }
+
+        .promo-cta-secondary {
+          flex-shrink: 0;
+          font-size: 12.5px;
+          font-weight: 700;
+          color: #fff;
+          background: transparent;
+          border: 1.5px solid rgba(255, 255, 255, 0.7);
+          padding: 8px 18px;
+          border-radius: var(--radius-pill);
+          text-decoration: none;
+          white-space: nowrap;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          transition: background var(--transition), transform var(--transition), border-color var(--transition);
+        }
+
+        .promo-cta-secondary:hover {
+          background: rgba(255, 255, 255, 0.16);
+          border-color: #fff;
           transform: translateY(-1px);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
         }
 
         .promo-close {
+          position: absolute;
+          top: 50%;
+          right: 12px;
+          transform: translateY(-50%);
           background: transparent;
           border: 0;
           color: #fff;
@@ -151,10 +300,22 @@ class BddcHeader extends HTMLElement {
 
         .promo-close svg { width: 12px; height: 12px; }
 
-        @media (max-width: 560px) {
-          .promo-inner { padding: 8px 16px; gap: 8px; }
-          .promo-text { font-size: 12px; }
-          .promo-cta { font-size: 11.5px; padding: 5px 13px; }
+        @media (prefers-reduced-motion: reduce) {
+          .promo-badge, .promo-cta, .promo-bar::after { animation: none; }
+        }
+
+        @media (max-width: 860px) {
+          .promo-inner { justify-content: flex-start; text-align: left; }
+        }
+
+        @media (max-width: 640px) {
+          .promo-inner { padding: 10px 40px 12px 16px; gap: 8px 12px; }
+          .promo-badge { width: 32px; height: 32px; font-size: 16px; }
+          .promo-title { font-size: 13px; }
+          .promo-countdown { font-size: 10px; padding: 2px 8px; margin-left: 6px; }
+          .promo-meta { font-size: 11px; }
+          .promo-actions { width: 100%; margin-top: 2px; }
+          .promo-cta, .promo-cta-secondary { flex: 1; justify-content: center; font-size: 12.5px; padding: 9px 14px; }
         }
 
         /* Header */
@@ -756,8 +917,24 @@ class BddcHeader extends HTMLElement {
       ${this._promoDismissed ? '' : `
       <div class="promo-bar" role="region" aria-label="2nd Year Anniversary Celebration announcement">
         <div class="promo-inner">
-          <span class="promo-text">🎉 We're celebrating <strong>2 years</strong> of rescue! Join our <strong>2nd Year Anniversary Celebration</strong> — Oct 4, 2026.</span>
-          <a class="promo-cta" href="${PROMO_TICKET_URL}" target="_blank" rel="noopener noreferrer">Sponsor / Buy Tickets</a>
+          <div class="promo-badge" aria-hidden="true">🐾</div>
+          <div class="promo-main">
+            <div class="promo-title">
+              🎉 2nd Year Anniversary Celebration
+              ${promoCountdownLabel() ? `<span class="promo-countdown">${promoCountdownLabel()}</span>` : ''}
+            </div>
+            <div class="promo-meta">
+              <span class="promo-meta-item">📅 Sun, Oct 4, 2026</span>
+              <span class="promo-meta-dot">•</span>
+              <span class="promo-meta-item">📍 Merrillville, IN</span>
+              <span class="promo-meta-dot">•</span>
+              <span class="promo-meta-item promo-urgency">🔥 Only 1 Top Dog sponsorship left!</span>
+            </div>
+          </div>
+          <div class="promo-actions">
+            <a class="promo-cta-secondary" href="${PROMO_LEARN_MORE_URL}" target="_top">Learn More</a>
+            <a class="promo-cta" href="${PROMO_TICKET_URL}" target="_blank" rel="noopener noreferrer">🎟️ Sponsor / Buy Tickets</a>
+          </div>
           <button class="promo-close" type="button" aria-label="Dismiss announcement">${this.closeSvg()}</button>
         </div>
       </div>
