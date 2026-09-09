@@ -20,8 +20,16 @@
   document.head.appendChild(link);
 })();
 
+// Anniversary promo bar — remove this block (and its call sites below) once the campaign ends
+const PROMO_TICKET_URL = 'https://www.zeffy.com/en-US/ticketing/2nd-year-anniversary-celebration-2';
+const PROMO_DISMISS_KEY = 'bddc-promo-anniversary-dismissed';
+
 class BddcHeader extends HTMLElement {
   connectedCallback() {
+    let dismissed = false;
+    try { dismissed = sessionStorage.getItem(PROMO_DISMISS_KEY) === '1'; } catch (e) { /* storage unavailable */ }
+    this._promoDismissed = dismissed;
+
     const shadow = this.attachShadow({ mode: 'open' });
     shadow.innerHTML = this.template();
     this.initInteractions(shadow);
@@ -72,6 +80,81 @@ class BddcHeader extends HTMLElement {
         .accent-bar {
           height: 3px;
           background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 50%, var(--hover) 100%);
+        }
+
+        /* Anniversary promo bar */
+        .promo-bar {
+          background: linear-gradient(90deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-dark) 100%);
+          color: #fff;
+        }
+
+        .promo-inner {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 9px 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 14px;
+          flex-wrap: wrap;
+          text-align: center;
+          position: relative;
+        }
+
+        .promo-text {
+          font-size: 13.5px;
+          font-weight: 600;
+          line-height: 1.4;
+        }
+
+        .promo-text strong { font-weight: 700; }
+
+        .promo-cta {
+          flex-shrink: 0;
+          font-size: 12.5px;
+          font-weight: 700;
+          color: var(--primary-dark);
+          background: #fff;
+          padding: 6px 16px;
+          border-radius: var(--radius-pill);
+          text-decoration: none;
+          white-space: nowrap;
+          transition: transform var(--transition), box-shadow var(--transition);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .promo-cta:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+        }
+
+        .promo-close {
+          background: transparent;
+          border: 0;
+          color: #fff;
+          opacity: 0.8;
+          cursor: pointer;
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background var(--transition), opacity var(--transition);
+          flex-shrink: 0;
+        }
+
+        .promo-close:hover {
+          background: rgba(255, 255, 255, 0.2);
+          opacity: 1;
+        }
+
+        .promo-close svg { width: 12px; height: 12px; }
+
+        @media (max-width: 560px) {
+          .promo-inner { padding: 8px 16px; gap: 8px; }
+          .promo-text { font-size: 12px; }
+          .promo-cta { font-size: 11.5px; padding: 5px 13px; }
         }
 
         /* Header */
@@ -670,6 +753,16 @@ class BddcHeader extends HTMLElement {
         }
       </style>
 
+      ${this._promoDismissed ? '' : `
+      <div class="promo-bar" role="region" aria-label="2nd Year Anniversary Celebration announcement">
+        <div class="promo-inner">
+          <span class="promo-text">🎉 We're celebrating <strong>2 years</strong> of rescue! Join our <strong>2nd Year Anniversary Celebration</strong> — Oct 4, 2026.</span>
+          <a class="promo-cta" href="${PROMO_TICKET_URL}" target="_blank" rel="noopener noreferrer">Sponsor / Buy Tickets</a>
+          <button class="promo-close" type="button" aria-label="Dismiss announcement">${this.closeSvg()}</button>
+        </div>
+      </div>
+      `}
+
       <header class="header" role="banner">
         <div class="accent-bar"></div>
         <nav class="nav" aria-label="Main navigation">
@@ -875,6 +968,16 @@ class BddcHeader extends HTMLElement {
     const hamburger = shadow.querySelector('.hamburger');
     const overlay = shadow.querySelector('.mobile-overlay');
     const closeBtn = shadow.querySelector('.mobile-close');
+
+    // Anniversary promo bar dismissal
+    const promoBar = shadow.querySelector('.promo-bar');
+    const promoClose = shadow.querySelector('.promo-close');
+    if (promoClose && promoBar) {
+      promoClose.addEventListener('click', () => {
+        promoBar.remove();
+        try { sessionStorage.setItem(PROMO_DISMISS_KEY, '1'); } catch (e) { /* storage unavailable */ }
+      });
+    }
 
     const openMobile = () => {
       hamburger.classList.add('active');
