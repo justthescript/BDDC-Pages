@@ -20,14 +20,13 @@
   document.head.appendChild(link);
 })();
 
-// Anniversary promo bar — remove this block (and its call sites below) once the campaign ends
-const PROMO_TICKET_URL = 'https://www.zeffy.com/en-US/ticketing/2nd-year-anniversary-celebration-2';
-const PROMO_LEARN_MORE_URL = 'https://www.bigdogsdontcry.com/bddc-anniversary';
-const PROMO_DISMISS_KEY = 'bddc-promo-anniversary-dismissed';
+// Silent auction promo bar — remove this block (and its call sites below) once the campaign ends
+const PROMO_AUCTION_URL = 'https://www.zeffy.com/en-US/ticketing/big-dogs-dont-cry-incs-silent-auction--2026';
+const PROMO_DISMISS_KEY = 'bddc-promo-silent-auction-dismissed';
 // Reuses the same signature rescue photo used site-wide as the default page hero
 const PROMO_DOG_IMAGE = 'https://source.roboflow.com/Y9smMJiA6ChaOzouCuCKrquv1Zg1/2vZdFHO0AQEK1RrLIN1u/original.jpg';
-// Ticket sales end at midnight CST on 9/28 — i.e. the instant 9/28 rolls into 9/29 (fixed -06:00 offset, not DST-adjusted)
-const PROMO_SALES_END = new Date('2026-09-29T00:00:00-06:00').getTime();
+// Auction closes at 4:00 PM Central on Sunday 10/4 (CDT, -05:00 in October)
+const PROMO_SALES_END = new Date('2026-10-04T16:00:00-05:00').getTime();
 
 function promoTimeLeft() {
   const diff = PROMO_SALES_END - Date.now();
@@ -63,7 +62,7 @@ class BddcHeader extends HTMLElement {
     document.body.style.overflow = '';
   }
 
-  // Ticks the sales-end countdown once a second without re-rendering the whole header
+  // Ticks the auction-close countdown once a second without re-rendering the whole header
   startPromoTimer(shadow) {
     const block = shadow.querySelector('.promo-countdown-block');
     if (!block) return;
@@ -71,7 +70,7 @@ class BddcHeader extends HTMLElement {
     const tick = () => {
       const t = promoTimeLeft();
       if (!t) {
-        block.innerHTML = '<span class="promo-countdown-ended">🎟️ Ticket Sales Have Ended</span>';
+        block.innerHTML = '<span class="promo-countdown-ended">🔨 Bidding Has Closed</span>';
         clearInterval(this._promoTimerInterval);
         return;
       }
@@ -130,7 +129,7 @@ class BddcHeader extends HTMLElement {
           background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 50%, var(--hover) 100%);
         }
 
-        /* Anniversary promo bar */
+        /* Silent auction promo bar */
         .promo-bar {
           position: relative;
           overflow: hidden;
@@ -1069,7 +1068,7 @@ class BddcHeader extends HTMLElement {
       </style>
 
       ${this._promoDismissed ? '' : `
-      <div class="promo-bar" role="region" aria-label="2nd Year Anniversary Celebration announcement">
+      <div class="promo-bar" role="region" aria-label="Silent Auction announcement">
         <div class="promo-inner">
           <div class="promo-row-top">
             <div class="promo-photo-frame">
@@ -1077,11 +1076,11 @@ class BddcHeader extends HTMLElement {
               <span class="promo-photo-paw" aria-hidden="true">🐾</span>
             </div>
             <div class="promo-headline">
-              <div class="promo-eyebrow">🎉 2nd Year Anniversary Celebration</div>
-              <div class="promo-date">📅 Sunday, October 4, 2026</div>
+              <div class="promo-eyebrow">🔨 Silent Auction Is Live!</div>
+              <div class="promo-date">⏰ Bidding closes Sunday, Oct 4 at 4 PM</div>
             </div>
-            <div class="promo-countdown-block" role="timer" aria-label="Ticket sales countdown">
-              <div class="promo-countdown-caption">🎟️ Tickets End Sept 28</div>
+            <div class="promo-countdown-block" role="timer" aria-label="Silent auction countdown">
+              <div class="promo-countdown-caption">🔨 Auction Ends Oct 4, 4 PM</div>
               <div class="promo-timer">
                 <div class="promo-timer-seg"><span class="promo-timer-num" data-unit="days">00</span><span class="promo-timer-label">Days</span></div>
                 <span class="promo-timer-colon">:</span>
@@ -1095,15 +1094,12 @@ class BddcHeader extends HTMLElement {
           </div>
           <div class="promo-row-bottom">
             <div class="promo-badges">
-              <span class="promo-feature-badge">🏆 Awards</span>
-              <span class="promo-feature-badge">🎟️ Raffles</span>
-              <span class="promo-feature-badge">🔨 Silent Auction</span>
-              <span class="promo-feature-badge">🍽️ Dinner</span>
+              <span class="promo-feature-badge">📱 Bid Online</span>
+              <span class="promo-feature-badge">🎁 Unique Items</span>
+              <span class="promo-feature-badge">🐾 Supports Rescue</span>
             </div>
-            <div class="promo-price">General Admission $45</div>
             <div class="promo-actions">
-              <a class="promo-cta-secondary" href="${PROMO_LEARN_MORE_URL}" target="_top">Learn More</a>
-              <a class="promo-cta" href="${PROMO_TICKET_URL}" target="_blank" rel="noopener noreferrer">🎟️ Sponsor / Buy Tickets</a>
+              <a class="promo-cta" href="${PROMO_AUCTION_URL}" target="_blank" rel="noopener noreferrer">🔨 View Auction &amp; Bid</a>
             </div>
           </div>
           <button class="promo-close" type="button" aria-label="Dismiss announcement">${this.closeSvg()}</button>
@@ -1317,7 +1313,7 @@ class BddcHeader extends HTMLElement {
     const overlay = shadow.querySelector('.mobile-overlay');
     const closeBtn = shadow.querySelector('.mobile-close');
 
-    // Anniversary promo bar dismissal
+    // Silent auction promo bar dismissal
     const promoBar = shadow.querySelector('.promo-bar');
     const promoClose = shadow.querySelector('.promo-close');
     if (promoClose && promoBar) {
