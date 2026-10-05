@@ -1067,7 +1067,8 @@ class BddcHeader extends HTMLElement {
         }
       </style>
 
-      ${this._promoDismissed ? '' : `
+      ${'' /* Promo banner hidden — delete this comment wrapper (and the closing marker below) to show it again
+      this._promoDismissed ? '' : `
       <div class="promo-bar" role="region" aria-label="Silent Auction announcement">
         <div class="promo-inner">
           <div class="promo-row-top">
@@ -1105,7 +1106,8 @@ class BddcHeader extends HTMLElement {
           <button class="promo-close" type="button" aria-label="Dismiss announcement">${this.closeSvg()}</button>
         </div>
       </div>
-      `}
+      `
+      end of hidden promo banner */}
 
       <header class="header" role="banner">
         <div class="accent-bar"></div>
