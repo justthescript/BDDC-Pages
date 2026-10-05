@@ -235,7 +235,7 @@
                   <span>Write Us</span>
                 </div>
                 <a class="contact-value" href="mailto:bigdogsdontcryrescue@gmail.com">
-                  BIGDOGSDONTCRYRESCUE@GMAIL.COM
+                  BIGDOGSDONTCRYRESCUE@<wbr>GMAIL.COM
                 </a>
               </div>
               <div class="contact-row">
@@ -895,21 +895,23 @@
           max-width: 1100px;
           margin: 0 auto;
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 32px;
-          align-items: start;
+          grid-template-columns: 1fr 1.6fr;
+          gap: 40px;
+          align-items: center;
         }
         .contact-overline {
           color: #f792b6;
-          font-weight: 600;
-          font-size: 1.1em;
-          margin-bottom: 6px;
+          font-weight: 700;
+          font-size: 18px;
+          letter-spacing: .5px;
+          margin-bottom: 8px;
         }
         .contact-title {
           margin: 0;
           color: var(--pink);
-          font-size: clamp(28px, 4vw, 40px);
+          font-size: clamp(34px, 4.2vw, 48px);
           font-weight: 700;
+          line-height: 1.15;
         }
         .contact-rows {
           display: grid;
@@ -917,20 +919,23 @@
         }
         .contact-row {
           display: grid;
-          grid-template-columns: 1fr 1.4fr;
+          grid-template-columns: 150px 1fr;
           align-items: center;
-          gap: 16px;
+          gap: 20px;
         }
         .contact-label {
           display: flex;
           align-items: center;
-          gap: 12px;
-          font-size: 1.15em;
+          gap: 14px;
+          font-size: 20px;
+          font-weight: 600;
           color: #4a4a66;
+          white-space: nowrap;
         }
         .paw {
-          width: 32px;
-          height: 32px;
+          width: 40px;
+          height: 40px;
+          flex-shrink: 0;
           display: grid;
           place-items: center;
         }
@@ -940,9 +945,9 @@
         .contact-value {
           color: var(--pink);
           font-weight: 700;
-          font-size: clamp(16px, 2vw, 22px);
+          font-size: clamp(18px, 1.9vw, 22px);
           text-decoration: none;
-          word-break: break-all;
+          overflow-wrap: break-word;
         }
         .contact-value:hover { text-decoration: underline; }
 
@@ -978,7 +983,8 @@
           .diff-grid { grid-template-columns: 1fr; gap: 24px; }
           .diff-body { font-size: 16px; }
           .contact-inner { grid-template-columns: 1fr; }
-          .contact-row { grid-template-columns: 1fr; gap: 6px; }
+          .contact-inner { gap: 24px; }
+          .contact-row { grid-template-columns: 1fr; gap: 8px; }
           .featured-card {
             flex-direction: column;
             align-items: center;
