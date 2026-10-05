@@ -183,11 +183,14 @@
                 <a class="logo-card lg" href="https://www.ApprovedwithAmanda.com/?Ref=BDDC" target="_blank" rel="noopener" aria-label="Approved with Amanda">
                   <img src="https://static.wixstatic.com/media/4cb683_86f69b6a2bb34675a259febe3aba11c6~mv2.jpg" alt="Approved with Amanda" loading="lazy" decoding="async">
                 </a>
-                <div class="logo-card lg kwhite" aria-label="Kelly White with McColly Real Estate">
-                  <div class="logo-pre">Kelly White with:</div>
-                  <a href="https://kwhite.mccolly.com/?Ref=BDDC" target="_blank" rel="noopener" aria-label="Kelly White at McColly Real Estate">
-                    <img src="https://static.wixstatic.com/media/4cb683_cbe4914489d34124a5d6b36622f5de08~mv2.png" alt="McColly Real Estate" loading="lazy" decoding="async">
-                  </a>
+                <div class="logo-card lg">
+                  <img src="https://static.wixstatic.com/media/4cb683_e89eb2d30f3641b4b5786999c6f817e7~mv2.png" alt="Silver Lining Pathways" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-card lg">
+                  <img src="https://static.wixstatic.com/media/4cb683_519a850cdbb441199afc0f13b7f0add8~mv2.png" alt="Jake Morgan, Stray Dog Properties" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-card lg">
+                  <img src="https://static.wixstatic.com/media/4cb683_be7951424f694aaca203465b1ef3cdba~mv2.png" alt="Patricia Perez, American Portfolio Mortgage" loading="lazy" decoding="async">
                 </div>
               </div>
             </div>
@@ -197,13 +200,10 @@
               <div class="rule-heart" aria-hidden="true"><span>❤</span></div>
               <div class="logo-row md-row">
                 <div class="logo-card md">
-                  <img src="https://static.wixstatic.com/media/4cb683_9f311e880ae649cb9df784b3b948cff4~mv2.jpg" alt="Sponsor logo" loading="lazy" decoding="async">
+                  <img src="https://static.wixstatic.com/media/4cb683_28aff6bafa8a437b9d808c52ae81cef3~mv2.png" alt="Krystal Zamora, Listing Leaders Northwest" loading="lazy" decoding="async">
                 </div>
                 <div class="logo-card md">
-                  <img src="https://static.wixstatic.com/media/4cb683_baa4fb2e8d2f4cd9a49cdbbd9c508e18~mv2.jpg" alt="Sponsor logo" loading="lazy" decoding="async">
-                </div>
-                <div class="logo-card md">
-                  <img src="https://static.wixstatic.com/media/4cb683_d2d9aa57bea3492db25b6448305612a1~mv2.jpg" alt="Sponsor logo" loading="lazy" decoding="async">
+                  <img src="https://static.wixstatic.com/media/4cb683_9b84d47d110c4d85a6b89fd66c36fc06~mv2.png" alt="Trish Geyer Insurance, Allstate" loading="lazy" decoding="async">
                 </div>
               </div>
             </div>
@@ -212,11 +212,10 @@
               <h3 class="level-title">Paw Pal Sponsors</h3>
               <div class="rule-heart" aria-hidden="true"><span>❤</span></div>
               <ul class="paw-pal">
-                <li>Who's Your Sitter? - Pet Sitting</li>
-                <li>Picture This Photobooth Rental</li>
-                <li>Culver's of Merrillville</li>
-                <li>1st American Management Co., Inc</li>
-                <li>Tina Renae Aesthetics &amp; Massage Wellness</li>
+                <li>CAPTRUST Chesterton</li>
+                <li>AAA Insurance Merrillville</li>
+                <li>Rose Bonato – Calumet City Animal Control</li>
+                <li>Anna &amp; Randy Borek</li>
               </ul>
             </div>
           </div>
@@ -838,24 +837,9 @@
           padding: 14px 16px;
           box-shadow: 0 6px 18px rgba(245,54,124,0.18);
         }
-        .logo-card.lg.kwhite {
-          width: clamp(200px, 24vw, 320px);
-          padding: 12px 14px;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.10);
-          text-align: center;
-        }
-        .logo-card.lg.kwhite .logo-pre {
-          margin: 4px 0 6px;
-          font-weight: 600;
-          font-size: 16px;
-          line-height: 1.2;
-          color: var(--pink);
-          letter-spacing: .2px;
-        }
-
         .md-row {
-          grid-template-columns: repeat(3, minmax(140px, 1fr));
-          max-width: 900px;
+          grid-template-columns: repeat(2, minmax(140px, 1fr));
+          max-width: 600px;
           margin-left: auto;
           margin-right: auto;
           gap: 16px 22px;
@@ -1022,7 +1006,6 @@
           .logo-card.xl { width: 100%; max-width: 560px; padding: 12px 14px; }
           .large-row { grid-template-columns: 1fr; }
           .logo-card.lg { width: 100%; max-width: 420px; padding: 12px 14px; }
-          .logo-card.lg.kwhite { max-width: 340px; }
           .md-row { grid-template-columns: 1fr; gap: 14px; }
           .logo-card.md { width: 100%; max-width: 300px; padding: 8px 10px; }
           .logo-card.md img { max-width: 82%; }
