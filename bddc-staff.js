@@ -45,7 +45,7 @@
     },
     {
       name: 'Patricia Perez',
-      photo: 'https://static.wixstatic.com/media/4cb683_d9acdf31e09a4c96a6e23ca540026130~mv2.jpg',
+      photo: 'https://static.wixstatic.com/media/4cb683_d797424579ae43ed990bea3e0df93328~mv2.jpg',
       titles: [
         'Board Member',
         'Executive Administrative Coordinator'
