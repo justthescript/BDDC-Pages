@@ -52,8 +52,8 @@
       ]
     },
     {
-      name: 'Jenny Burton',
-      photo: 'https://static.wixstatic.com/media/4cb683_7a4daa76836f45cea610ac74a48e1b9a~mv2.jpeg',
+      name: 'Ana Rosas',
+      photo: 'https://static.wixstatic.com/media/4cb683_2ef981f854254b4eb168b39218f2ce1d~mv2.jpg',
       titles: [
         'Board Member',
         'Director of Medical Records',
@@ -61,8 +61,8 @@
       ]
     },
     {
-      name: 'Michele Lyczak',
-      photo: 'https://static.wixstatic.com/media/4cb683_32ff7acb38fe4fe9939dfcd46f2f5901~mv2.jpg',
+      name: 'Shanda Hanft',
+      photo: 'https://static.wixstatic.com/media/4cb683_0c5af93ed0c141a1affe8ea46e3bb2de~mv2.jpg',
       titles: [
         'Board Member',
         'Co-Director of Foster Program'
@@ -80,6 +80,14 @@
     {
       name: 'Kelsey Mathis',
       photo: 'https://static.wixstatic.com/media/bc59b6_0b5ead8432f1499c867aa1f5161f777e~mv2.jpg',
+      titles: [
+        'Board Member',
+        'Co-Director of Fundraising'
+      ]
+    },
+    {
+      name: 'Kristyn Broach',
+      photo: 'https://static.wixstatic.com/media/4cb683_261167d32d484dd786a056e3b9ed0817~mv2.jpg',
       titles: [
         'Board Member',
         'Co-Director of Fundraising'
