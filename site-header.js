@@ -1143,8 +1143,15 @@ class BddcHeader extends HTMLElement {
               <a class="nav-link" href="https://www.bigdogsdontcry.com/events" target="_top" role="menuitem">Events</a>
             </li>
 
-            <li role="none">
-              <a class="nav-link" href="https://www.zeffy.com/en-US/ticketing/big-dogs-dont-cry-merch-shop" target="_blank" rel="noopener noreferrer" role="menuitem">Shop</a>
+            <li class="dropdown" role="none">
+              <button class="dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false" role="menuitem">
+                Shop
+                ${this.chevronSvg()}
+              </button>
+              <div class="dropdown-menu" role="menu">
+                <a class="dropdown-link" href="https://www.zeffy.com/en-US/ticketing/big-dogs-dont-cry-merch-shop" target="_blank" rel="noopener noreferrer">Merch Shop</a>
+                <a class="dropdown-link" href="https://www.amazon.com/hz/wishlist/ls/5RKP49Q0QQHF?ref_=wl_share" target="_blank" rel="noopener noreferrer">Amazon Wishlist</a>
+              </div>
             </li>
 
             <li class="dropdown" role="none">
@@ -1240,7 +1247,14 @@ class BddcHeader extends HTMLElement {
             </li>
 
             <li class="mobile-item">
-              <a class="mobile-link" href="https://www.zeffy.com/en-US/ticketing/big-dogs-dont-cry-merch-shop" target="_blank" rel="noopener noreferrer">Shop</a>
+              <button class="mobile-toggle" type="button" aria-expanded="false">
+                Shop
+                ${this.chevronSvg()}
+              </button>
+              <div class="mobile-submenu">
+                <a class="mobile-sublink" href="https://www.zeffy.com/en-US/ticketing/big-dogs-dont-cry-merch-shop" target="_blank" rel="noopener noreferrer">Merch Shop</a>
+                <a class="mobile-sublink" href="https://www.amazon.com/hz/wishlist/ls/5RKP49Q0QQHF?ref_=wl_share" target="_blank" rel="noopener noreferrer">Amazon Wishlist</a>
+              </div>
             </li>
 
             <li class="mobile-item">
