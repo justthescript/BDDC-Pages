@@ -135,6 +135,23 @@
             </div>
           </section>
 
+          <!-- AMAZON WISHLIST -->
+          <section class="wishlist-card reveal">
+            <div class="wishlist-icon" aria-hidden="true">🎁</div>
+            <div class="wishlist-content">
+              <div class="section-overline">Give Supplies</div>
+              <h2 class="wishlist-title">Shop Our Amazon Wishlist</h2>
+              <p class="wishlist-body">
+                Prefer to give something tangible? Our Amazon Wishlist is stocked with the food,
+                beds, toys, and medical supplies our dogs need most. Pick an item and it ships
+                straight to the rescue.
+              </p>
+              <a class="btn btn-pink" href="https://www.amazon.com/hz/wishlist/ls/5RKP49Q0QQHF?ref_=wl_share" target="_blank" rel="noopener noreferrer">
+                View Our Wishlist <span class="arrow">→</span>
+              </a>
+            </div>
+          </section>
+
           <!-- TRUST BADGE -->
           <section class="trust-card reveal">
             <div class="trust-overline">Verified Nonprofit</div>
@@ -762,6 +779,60 @@
         }
         .arrow { display: inline-block; transition: transform .15s ease; }
         .btn:hover .arrow { transform: translateX(4px); }
+
+        /* ───── AMAZON WISHLIST ───── */
+        .wishlist-card {
+          display: flex;
+          align-items: center;
+          gap: clamp(20px, 3vw, 36px);
+          background: var(--pink-bg);
+          border: 2px solid var(--pink-soft);
+          border-radius: 22px;
+          padding: clamp(28px, 4vw, 44px) clamp(24px, 4vw, 48px);
+          box-shadow: var(--shadow-sm);
+          margin-bottom: 48px;
+        }
+        .wishlist-icon {
+          flex-shrink: 0;
+          width: clamp(80px, 9vw, 110px);
+          height: clamp(80px, 9vw, 110px);
+          display: grid;
+          place-items: center;
+          font-size: clamp(40px, 5vw, 56px);
+          background: #fff;
+          border-radius: 50%;
+          box-shadow: var(--shadow-md);
+        }
+        .wishlist-content .section-overline { margin-bottom: 6px; }
+        .wishlist-title {
+          margin: 0 0 10px;
+          font-size: clamp(24px, 3vw, 32px);
+          font-weight: 700;
+          line-height: 1.2;
+          color: var(--ink);
+        }
+        .wishlist-body {
+          margin: 0 0 20px;
+          font-size: clamp(15px, 1.3vw, 17px);
+          line-height: 1.65;
+          color: var(--muted);
+        }
+        .btn-pink {
+          background: var(--pink);
+          color: #fff;
+          box-shadow: var(--shadow-md);
+        }
+        .btn-pink:hover {
+          background: var(--pink-deep);
+          transform: translateY(-2px);
+          box-shadow: var(--shadow-lg);
+        }
+        @media (max-width: 600px) {
+          .wishlist-card {
+            flex-direction: column;
+            text-align: center;
+          }
+        }
 
         /* ───── ACCORDIONS ───── */
         .accordions-section {
